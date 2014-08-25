@@ -45,7 +45,10 @@ class tx_nagios_befunc {
 	 */
 	public function displayWarningMessages_postProcess(&$warning) {
 
-		if (isset($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf'][$this->extKey]) && is_string($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf'][$this->extKey]) && !empty($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf'][$this->extKey]))
+		if (isset($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf'][$this->extKey])
+		 && is_string($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf'][$this->extKey])
+		 && !empty($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf'][$this->extKey])) {
+
 			$extConf = @unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf'][$this->extKey]);
 			if (is_array($extConf) && array_key_exists('securityNagiosServerList', $extConf)) {
 
@@ -62,15 +65,14 @@ class tx_nagios_befunc {
 					if (!empty($ipAddress)
 					 && (preg_match('/^[0-9]{1,3}\.[0-9\*]{1,3}\.[0-9\*]{1,3}\.[0-9\*]{1,3}$/', $ipAddress) == FALSE
 					 || in_array($ipAddress, $this->invalidIpAddresses))) {
-					$warning[$this->extKey.':'.__CLASS__] = sprintf($GLOBALS['LANG']->sL('LLL:EXT:nagios/lang/locallang.xml:nagios_misconfiguration_invalid_ip_address'));
+						$warning[$this->extKey.':'.__CLASS__] = sprintf($GLOBALS['LANG']->sL('LLL:EXT:nagios/lang/locallang.xml:nagios_misconfiguration_invalid_ip_address'));
+					}
 				}
 			}
 		}
 	}
-};
+}
 
 if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/nagios/classes/class.tx_nagios_befunc.php']) {
 	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/nagios/classes/class.tx_nagios_befunc.php']);
 }
-
-?>

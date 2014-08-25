@@ -34,13 +34,13 @@ All versions up to 1.2.5 support the method of accessing the TYPO3 Nagios® exte
 
 If you update from version 1.0.x to version 1.2.x, you come across the extension configuration during the installation process. Ensure you enable the features you want to monitor as usual and do not forget to add the IP address(es) of the Nagios® server.
 
-Change the arguments of the check script on the Nagios® server and remove “-pid <pageid>” (or “--pageid <pageid>”) and replace it with “ **--resource /?eID=nagios** ”. A typical line in the Nagios® configuration file could look like:
+Change the arguments of the check script on the Nagios® server and remove “-pid <pageid>” (or “--pageid <pageid>”) and replace it with “**--resource /?eID=nagios**”. In newer versions of the “check\_typo3.sh” plugin for Nagios®, even the “--resource” parameter is not required. A typical line in the Nagios® configuration file could look like:
 
 ::
 
-   check_typo3!--hostname your-domain.com --resource /?eID=nagios
+   check_typo3!--hostname your-domain.com
 
-Check, if the new configuration works (reload Nagios® server and re-schedule the appropriate check). If everything is fine, you can delete the page in the TYPO3 backend, where the TYPO3 extensions was installed on.
+Check, if the new configuration works (reload Nagios® server and re-schedule the appropriate check). If everything is ok, you can delete the page in the TYPO3 backend, where the TYPO3 extensions was installed on.
 
 Update from version 1.2.x to the latest 1.2.x
 """""""""""""""""""""""""""""""""""""""""""""

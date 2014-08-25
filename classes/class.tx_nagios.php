@@ -60,7 +60,8 @@
  *
  * public function getDiskUsage()
  *	Determines the size of current disk usage if possible (requires *nix system)
- *	Note: the disk usage determined by method is not 100% reliable. If the web server user (e.g. 'www-data') does not have access to all subdirectories of PATH_site, not all data can be counted.
+ *	Note: the disk usage determined by method is not 100% reliable. If the web server user (e.g. 'www-data')
+ *	does not have access to all subdirectories of PATH_site, not all data can be counted.
  *
  * public getSitename()
  *	Returns TYPO3 CMS site name if available
@@ -78,7 +79,8 @@
  *	Returns version of Nagios plugin (client) if passed by GET/POST argument
  *
  * public function takeProxyServerIntoAccount()
- *	Enable or disable the feature to take IP addresses into account, which are typically passed through in HTTP headers from a proxy/cache/load balancer server
+ *	Enable or disable the feature to take IP addresses into account, which are typically passed through in HTTP headers
+ *	from a proxy/cache/load balancer server
  *
  * public function initExtensionConfiguration()
  *	Initializes extension configuration array
@@ -184,7 +186,7 @@ class tx_nagios {
 	 * @access	public
 	 * @return	void
 	 */
-	function __construct() {
+	public function __construct() {
 
 		// set database resource link
 		$this->database = $GLOBALS['TYPO3_DB'];
@@ -661,7 +663,7 @@ class tx_nagios {
 	 * @param	string		$versionNumber: version number on format x.x.x
 	 * @return	integer		integer version of version number (where each part can count to 999)
 	 */
-	static function convertVersionNumberToInteger($versionNumber) {
+	public static function convertVersionNumberToInteger($versionNumber) {
 
 		// t3lib_div::int_from_ver() is *deprecated* and will be removed in TYPO3 6.1
 		// Use t3lib_utility_VersionNumber::convertVersionNumberToInteger() instead, if possible:
@@ -704,7 +706,7 @@ class tx_nagios {
 	 */
 	public function getNagiosPluginVersion() {
 
-		$nagiosPluginVersion = t3lib_div::_GP(tx_nagios::TX_NAGIOS_GETPOST_PARAMETER_NAGIOS_PLUGIN_VERSION);
+		$nagiosPluginVersion = t3lib_div::_GP(self::TX_NAGIOS_GETPOST_PARAMETER_NAGIOS_PLUGIN_VERSION);
 		if(preg_match('/^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$/', $nagiosPluginVersion)) {
 			return $nagiosPluginVersion;
 		}
@@ -752,11 +754,8 @@ class tx_nagios {
 	 */
 	public function takeProxyServerIntoAccount($status = FALSE) {
 
-		if(isset($status) && is_bool($status) && $status === TRUE) {
-		}
-		else {
+		if(!isset($status) || !is_bool($status) || $status !== TRUE) {
 			// "destroy" the array $this->validProxyHeaders in order to deactivate the check
-			// (this should be the default behaviour)
 			$this->validProxyHeaders = NULL;
 		}
 	}
@@ -792,11 +791,3 @@ class tx_nagios {
 		);
 	}
 }
-
-/*
-if(defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/nagios/classes/class.tx_nagios.php']) {
-	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/nagios/classes/class.tx_nagios.php']);
-}
-*/
-
-?>

@@ -113,7 +113,7 @@ class tx_nagios_eid {
 	 * @access	public
 	 * @return	void
 	 */
-	function __construct() {
+	public function __construct() {
 
 		$this->objNagios = t3lib_div::makeInstance('tx_nagios');
 
@@ -235,10 +235,10 @@ class tx_nagios_eid {
 		// add header ("Nagios TYPO3 Monitoring Version x.x.x...") if not permitted in extension configuration
 		$header = '';
 		if($this->extensionConfiguration['securitySupressHeader'] != 1) {
-			$header.= '# '.$this->extensionDetails['title'].' Version '.$this->extensionDetails['version']." - http://schams.net/nagios\n";
+			$header.= '# '.$this->extensionDetails['title'].' Version '.$this->extensionDetails['version'].' - http://schams.net/nagios' . PHP_EOL;
 
 			if($nagiosPluginVersion !== FALSE && is_string($nagiosPluginVersion) && !empty($nagiosPluginVersion)) {
-				$header.= '# Nagios Plugin Version '.$nagiosPluginVersion." (IP: ".t3lib_div::getIndpEnv('REMOTE_ADDR').")\n";
+				$header.= '# Nagios Plugin Version '.$nagiosPluginVersion.' (IP: ' . t3lib_div::getIndpEnv('REMOTE_ADDR') . ')' . PHP_EOL;
 			}
 			$header.= "\n";
 		}
@@ -250,8 +250,8 @@ class tx_nagios_eid {
 			header('Content-Type: text/plain');
 
 			// disable client side caching, e.g. proxy servers (very basic only)
-			header("Cache-Control: no-cache, must-revalidate");
-			header("Expires: Sat, 01 Jan 2011 00:00:00 UTC");
+			header('Cache-Control: no-cache, must-revalidate');
+			header('Expires: Sat, 01 Jan 2011 00:00:00 UTC');
 		}
 
 		// final output: header (if available) + data (with static markers replaced)
@@ -289,5 +289,3 @@ class tx_nagios_eid {
 
 $nagiosInfo = t3lib_div::makeInstance('tx_nagios_eid');
 $nagiosInfo->main();
-
-?>

@@ -1,5 +1,7 @@
 2014-08-24 Michael Schams <schams.net>
 
+	* documentation updated (typos, styles and formatting corrected)
+	* code clean up to comply with SonarSource CGL: https://metrics.typo3.org/dashboard/index/org.typo3:extension-nagios
 	* Transfer source code to GitHub: https://github.com/schams-net/nagios
 
 2014-07-11 Michael Schams <schams.net>
