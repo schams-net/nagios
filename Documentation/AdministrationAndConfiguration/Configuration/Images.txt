@@ -1,0 +1,6 @@
+﻿.. |illustration06|      image:: ../../Images/AdministrationAndConfiguration/Configuration/illustration06.png
+   :height: 138
+   :width: 669
+.. :align: left
+.. :border: 0
+.. :name: graphics4

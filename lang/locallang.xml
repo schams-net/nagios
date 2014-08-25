@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<!--
+ * This file is part of the TYPO3 CMS Extension "Nagios"
+ * Author: Michael Schams - http://schams.net
+ *
+ * It is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License, either version 2
+ * of the License, or any later version.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ *
+ * The TYPO3 project - inspiring people to share!
+ *
+ *
+ * TYPO3 language file for the 'nagios' extension.
+ *
+ * @author		Michael Schams <schams.net>
+ * @package		TYPO3
+ * @subpackage	tx_nagios
+ *
+-->
+<T3locallang>
+	<meta type="array">
+		<type>module</type>
+		<description>Language labels for plugin &quot;tx_nagios_pi1&quot;</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="access_denied_line01">ACCESS DENIED</label>
+			<label index="access_denied_line02">Remote server is not allowed to retrieve information about this TYPO3 server.</label>
+			<label index="access_denied_line03">If you think this is an error, check the settings of TYPO3 Nagios(R) Extension</label>
+			<label index="keyword_typo3">TYPO3</label>
+			<label index="keyword_php">PHP</label>
+			<label index="keyword_extension">EXT</label>
+			<label index="keyword_extensiondependencytypo3">EXTDEPTYPO3</label>
+			<label index="keyword_databasetables">DBTABLES</label>
+			<label index="keyword_databaseprocesslist">DBPROCESSLIST</label>
+			<label index="keyword_timestamp">TIMESTAMP</label>
+			<label index="keyword_deprecationlog">DEPRECATIONLOG</label>
+			<label index="keyword_deprecationlogfilesize">DEPRECATIONLOGFILESIZE</label>
+			<label index="keyword_donationnotice">DONATIONNOTICE</label>
+			<label index="keyword_diskusage">DISKUSAGE</label>
+			<label index="keyword_sitename">SITENAME</label>
+			<label index="keyword_servername">SERVERNAME</label>
+			<label index="keyword_warning">WARNING</label>
+			<label index="keyword_message">MESSAGE</label>
+
+			<label index="nagios_misconfiguration_invalid_ip_address">Misconfiguration of Nagios TYPO3 Monitoring detected: please specify the IP address of the Nagios server (and the Nagios server ONLY) in the extension configuration. The current list of Nagios servers is incomplete, invalid or allows everyone to access the output of the extension.</label>
+		</languageKey>
+	</data>
+</T3locallang>

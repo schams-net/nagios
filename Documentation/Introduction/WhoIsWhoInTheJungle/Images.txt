@@ -1,0 +1,6 @@
+﻿.. |illustration01|      image:: ../../Images/Introduction/WhoIsWhoInTheJungle/illustration01.png
+   :height: 129
+   :width: 605
+.. :align: left
+.. :border: 0
+.. :name: graphics5

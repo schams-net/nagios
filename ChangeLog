@@ -1,0 +1,189 @@
+2014-08-24 Michael Schams <schams.net>
+
+	* Transfer source code to GitHub: https://github.com/schams-net/nagios
+
+2014-07-11 Michael Schams <schams.net>
+
+	* documentation updated and converted into ReST format
+	* LICENSE.txt file added (GPLv2)
+	* header comments simplified/updated
+	* deprecation warning eliminated: EidUtility::connectDB()
+	* extension released as version 1.2.11 in TYPO3 Extension Repository (TER)
+
+2014-03-22 Michael Schams <schams.net>
+
+	* documentation updated
+	* extension released as version 1.2.10 in TYPO3 Extension Repository (TER)
+
+2014-01-31 Michael Schams <schams.net>
+
+	* internal tests completed and released to beta testers
+	
+2013-12-13 Michael Schams <schams.net>
+
+	* support for generating extension list (loaded extensions only) for TYPO3 CMS 6.2 added
+	* deprecated code to use extension as a (frontend) plugin removed
+	* language files simplified and combined
+	* extension in beta test
+
+2013-05-31 Michael Schams <schams.net>
+
+	* tested with TYPO3 CMS 6.1 and compatibility statement updated
+	* documentation updated
+	* extension released as version 1.2.9 in TYPO3 Extension Repository (TER)
+
+2013-03-13 Michael Schams <schams.net>
+
+	* (bugfix) PHP warnings in sys log ("in_array() expects parameter 2 to be array [...] t3lib/class.t3lib_iconworks.php")
+	* extension released as version 1.2.8 in TYPO3 Extension Repository (TER)
+
+2013-01-09 Michael Schams <schams.net>
+
+	* access verification when checking for HTTP proxy headers fixed
+	* documentation updated
+	* extension released as version 1.2.7 in TYPO3 Extension Repository (TER)
+
+2012-12-17 Michael Schams <schams.net>
+
+	* documentation updated
+	* extension released as version 1.2.6 in TYPO3 Extension Repository (TER)
+
+2012-12-15 Michael Schams <schams.net>
+
+	* usage of the extension as a FE plugin discontinued and partly removed
+
+2012-12-11 Michael Schams <schams.net>
+
+	* take IP addresses into account, which are typically passed through in HTTP headers from a proxy/cache/load balancer
+
+2012-11-06 Michael Schams <schams.net>
+
+	* documentation updated
+	* extension released as version 1.2.5 in TYPO3 Extension Repository (TER)
+
+2012-11-02 Michael Schams <schams.net>
+
+	* imported but not loaded extensions included in extension list (requires TYPO3 version 4.5.0 or newer)
+
+2012-09-23 Michael Schams <schams.net>
+
+	* TypoScript template uses type=string instead of (undefined) type=input
+
+2012-05-01 Michael Schams <schams.net>
+
+	* documentation updated
+	* extension released as version 1.2.4 in TYPO3 Extension Repository (TER)
+
+2012-04-29 Michael Schams <schams.net>
+
+	* PHP function calls require_once replaced with TYPO3 API call: t3lib_div::requireOnce()
+	* internal method convertVersionNumberToInteger() implemented (avoids deprecated int_from_ver() but supports old TYPO3 versions)
+	* inclusion of file/class t3lib_exec forced for TYPO3 version 4.1.x
+
+2012-02-24 Michael Schams <schams.net>
+
+	* message in FlexForms explicitly warns about the fact that the FE plugin is deprecated
+	* message in output explicitly warns about the fact that the FE plugin is deprecated
+	* (bugfix) wrong retrieval of values from locallang.xml fixed (FE plugin caused "Call to a member function getLL()..." error)
+	* dependency constraints to TYPO3 min/max versions added ("own" ext_emconf.php)
+
+2012-02-19 Michael Schams <schams.net>
+
+	* code for extension list creation restructured
+	* extension dependency check implemented (TYPO3 min/max versions)
+	* display version of Nagios plugin (passed by GET/POST argument) and IP address of Nagios server implemented (for informational purposes)
+	* (bugfix) extension configuration array not initialized correctly
+	
+2012-01-05 Michael Schams <schams.net>
+
+	* documentation updated
+	* extension released as version 1.2.3 in TYPO3 Extension Repository (TER)
+
+2011-12-09 Michael Schams <schams.net>
+
+	* new file/class "tx_nagios_utility_command" replicates t3lib_utility_Command if it does not exist
+	* check "diskUsage" implemented (requires UNIX/Linux system)
+	* check "sitename" implemented (for informational purposes)
+	* check "servername" implemented (for informational purposes)
+
+2011-12-01 Michael Schams <schams.net>
+
+	* documentation updated
+	* extension released as version 1.2.2 in TYPO3 Extension Repository (TER)
+
+2011-11-18 Michael Schams <schams.net>
+
+	* backend warning for administrators implemented if list of Nagios servers looks suspecious (requires TYPO3 version 4.2.0 or newer)
+	* file name of FlexForms updated
+	* unused labels in locallang_tca.xml removed
+	* invalid return value "void" removed at several methods to address PHP warnings
+	* initialization of extension configuration implemented to address PHP warnings
+
+2011-11-12 Michael Schams <schams.net>
+
+	* file name and class name of FlexForms updated
+	* typo in file ext_conf_template.txt corrected
+
+2011-11-07 Michael Schams <schams.net>
+
+	* line after closing php-end-tag removed (impacts generation of XML and other files)
+
+2011-11-05 Michael Schams <schams.net>
+
+	* compatibility with TYPO3 v4.1.x and TYPO3 v4.2.x implemented
+	* database checks in eID method fixed
+	* isValidNagiosServer() code simplified
+	* list of allowed Nagios servers supports wildcards now (e.g. 123.45.67.*)
+
+2011-11-01 Michael Schams <schams.net>
+
+	* corrupted version information fixed
+	* extension released as version 1.2.1 in TYPO3 Extension Repository (TER)
+
+2011-11-01 Michael Schams <schams.net>
+
+	* documentation updated
+	* ChangeLog revised
+	* files doc/wizard_form.* removed
+	* extension released as version 1.1.0 in TYPO3 Extension Repository (TER)
+
+2011-10-07 Michael Schams <schams.net>
+
+	* main functionality extracted from pi1 class
+	* database details divided into "database tables" and "database processlist"
+	* check "allowDonateWindow" removed from TYPO3 version 4.5.1 and above
+	* typo in ChangeLog corrected
+	* code simplified at several places
+	* eID code implemented (thanks for your contribution, Christian!)
+
+2011-10-07 Christian Lerrahn <christian.lerrahn@cerebrum.com.au>
+
+	* switched to eID
+
+2011-04-01 Michael Schams <schams.net>
+
+	* beta tests completed
+	* extension packed and officially published as stable
+
+2011-01-28 Michael Schams <schams.net>
+
+	* code cleaned up
+
+2010-10-05 Michael Schams <schams.net>
+
+	* second set of functionalities implemented
+
+2010-10-04 Michael Schams <schams.net>
+
+	* configuration via FlexForms implemented
+
+2010-09-21 Michael Schams <schams.net>
+
+	* basic "proof-of-concept"
+	* first set of functionalities implemented
+	* security features implemented
+	* extension in beta test
+
+2010-09-19 Michael Schams <schams.net>
+
+	* initial version (alpha, not published)

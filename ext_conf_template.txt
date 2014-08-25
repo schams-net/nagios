@@ -1,0 +1,48 @@
+# cat=basic/enable; type=boolean; label=TYPO3 Version:Include TYPO3 version in output
+featureTYPO3Version = 1
+
+# cat=basic/enable; type=boolean; label=PHP Version: Include PHP version in output
+featurePHPVersion = 1
+
+# cat=basic/enable; type=boolean; label=Extension List:Include list of TYPO3 extensions and their version numbers in output
+featureExtensionList = 1
+
+# cat=basic/enable; type=boolean; label=Extension Dependencies (TYPO3):Include TYPO3 dependency warnings for extensions in output
+featureExtensionDependencyTypo3 = 1
+
+# cat=basic/enable; type=boolean; label=Loaded Extensions Only:Include loaded TYPO3 extensions only (not recommended)
+featureLoadedExtensionsOnly = 0
+
+# cat=basic/enable; type=boolean; label=Database Details:Include amount of database tables in output
+featureBasicDatabaseDetailsTables = 1
+
+# cat=basic/enable; type=boolean; label=Database Details:Include amount of database processes in output
+featureBasicDatabaseDetailsProcesslist = 1
+
+# cat=basic/enable; type=boolean; label=Deprecation Log:Include status of deprecation log in output
+featureDeprecationLog = 1
+
+# cat=basic/enable; type=boolean; label=Donation Notice:Include status of donation notice popup in output
+featureDonationNotice = 1
+
+# cat=basic/enable; type=boolean; label=Supress Header:Supress header line (TYPO3 Nagios(R) Extension and version) in output
+securitySupressHeader = 0
+
+# cat=basic/enable; type=boolean; label=Timestamp:Include current timestamp and timezone (server settings) in output
+featureTimestamp = 1
+
+# cat=basic/enable; type=boolean; label=Disk Usage:Include the size of current disk usage (requires UNIX/Linux system)
+featureCheckDiskUsage = 0
+
+# cat=basic/enable; type=boolean; label=Site name:Include TYPO3 site name in output
+featureSitename = 0
+
+# cat=basic/enable; type=boolean; label=Server name:Include server name or HTTP host name in output
+featureServername = 0
+
+# cat=basic/enable; type=string; label=Nagios(R) servers:Comma separated list of IP addresses of Nagios(R) servers allowed to retrieve information about this TYPO3 instance (specify the IP address of the Nagios server - and the Nagios server ONLY)
+securityNagiosServerList = 127.0.0.1
+
+# cat=basic/enable; type=boolean; label=TYPO3 Behind Proxy Server:Take IP address forwarded by proxy servers in HTTP header into account (not recommended)
+securityProxyHeaders = 0
+

@@ -1,0 +1,6 @@
+﻿.. |illustration02|      image:: ../../Images/Introduction/TechnicalConcept/illustration02.png
+   :height: 340
+   :width: 605
+.. :align: left
+.. :border: 0
+.. :name: graphics22
