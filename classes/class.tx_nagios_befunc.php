@@ -13,6 +13,9 @@
  * The TYPO3 project - inspiring people to share!
  */
 
+// include class tx_nagios which builds main functions
+t3lib_div::requireOnce(t3lib_extMgm::extPath('nagios').'/classes/class.tx_nagios.php');
+
 /**
  * TYPO3 backend functions for the 'nagios' extension.
  *
@@ -37,6 +40,23 @@ class tx_nagios_befunc {
 	var $invalidIpAddresses = array('0.0.0.0', '*.*.*.*');
 
 	/**
+	 * Nagios object (instantiated in Contructor method)
+	 *
+	 * @var object
+	 */
+	private $objNagios;
+
+	/**
+	 * Constructor method.
+	 *
+	 * @access      public
+	 * @return      void
+	 */
+	public function __construct() {
+		$this->objNagios = t3lib_div::makeInstance('tx_nagios');
+	}
+
+	/**
 	 * Generate warning message to admin users if misconfiguration of "Nagios server list" was detected.
 	 * This method is triggered by a hook for showing admin error messages in TYPO3 CMS backend
 	 *
@@ -51,15 +71,16 @@ class tx_nagios_befunc {
 
 			$extConf = @unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf'][$this->extKey]);
 			if (is_array($extConf) && array_key_exists('securityNagiosServerList', $extConf)) {
+				// resolve hostnames in list
+				$securityNagiosServerList = $this->objNagios->resolveHostnamesInList($extConf['securityNagiosServerList']);
 
 				// check for an empty list
-				$nagiosServerList = trim(preg_replace('/[^0-9\.]/', '', $extConf['securityNagiosServerList']));
-				if (empty($nagiosServerList)) {
+				if (empty($securityNagiosServerList)) {
 					$warning[$this->extKey.':'.__CLASS__] = sprintf($GLOBALS['LANG']->sL('LLL:EXT:nagios/lang/locallang.xml:nagios_misconfiguration_invalid_ip_address'));
 				}
 
 				// check for invalid or "dangerous" IP addresses
-				$nagiosServerList = explode(',', $extConf['securityNagiosServerList']);
+				$nagiosServerList = explode(',', $securityNagiosServerList);
 				foreach($nagiosServerList as $ipAddress) {
 					$ipAddress = trim($ipAddress);
 					if (!empty($ipAddress)
