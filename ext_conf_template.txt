@@ -40,7 +40,7 @@ featureSitename = 0
 # cat=basic/enable; type=boolean; label=Server name:Include server name or HTTP host name in output
 featureServername = 0
 
-# cat=basic/enable; type=string; label=Nagios(R) servers:Comma separated list of IP addresses of Nagios(R) servers allowed to retrieve information about this TYPO3 instance (specify the IP address of the Nagios server - and the Nagios server ONLY)
+# cat=basic/enable; type=string; label=Nagios(R) servers:Comma separated list of IP addresses or hostnames of Nagios(R) servers allowed to retrieve information about this TYPO3 instance (specify the IP address/hostname of the Nagios server - and the Nagios server ONLY)
 securityNagiosServerList = 127.0.0.1
 
 # cat=basic/enable; type=boolean; label=TYPO3 Behind Proxy Server:Take IP address forwarded by proxy servers in HTTP header into account (not recommended)

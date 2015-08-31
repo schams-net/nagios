@@ -220,9 +220,11 @@ class tx_nagios {
 		if(isset($securityNagiosServerList)
 		  && !empty($securityNagiosServerList)
 		  && is_string($securityNagiosServerList)) {
+			// resolve hostnames in list
+			$securityNagiosServerList = $this->resolveHostnamesInList($securityNagiosServerList);
 
 			// check remote IP address
-			if(t3lib_div::cmpIP(t3lib_div::getIndpEnv('REMOTE_ADDR'), preg_replace('/[^0-9,\*\.]/', '', $securityNagiosServerList)) === TRUE) {
+			if(t3lib_div::cmpIP(t3lib_div::getIndpEnv('REMOTE_ADDR'), $securityNagiosServerList) === TRUE) {
 				return TRUE;
 			}
 
@@ -236,7 +238,7 @@ class tx_nagios {
 					 && in_array($httpHeaderKey, $this->validProxyHeaders)
 					 && is_string($httpHeaderValue) && !empty($httpHeaderValue)
 					 && t3lib_div::validIPv4($httpHeaderValue) ) {
-						if(t3lib_div::cmpIP($httpHeaderValue, preg_replace('/[^0-9,\*\.]/', '', $securityNagiosServerList)) === TRUE) {
+						if(t3lib_div::cmpIP($httpHeaderValue, $securityNagiosServerList) === TRUE) {
 							return TRUE;
 						}
 					}
@@ -250,6 +252,34 @@ class tx_nagios {
 		// extension configuration does not restrict remote Nagios servers
 		// (same as using "*" as configuration value)
 		return TRUE;
+	}
+
+
+	/**
+	 * Returns comma-separated list of submitted IP addresses, but with hostnames resolved to IP addresses too
+	 *
+	 * @access	public
+	 * @param	string	Comma-separated list of IP addresses and hostnames (wildcard allowed)
+	 * @return	string	Comma-separated list of IP addresses (wildcard allowed)
+	 */
+	public function resolveHostnamesInList($list) {
+		$resolvedList = array();
+
+		$listItems = t3lib_div::trimExplode(',', $list, TRUE);
+		foreach ($listItems as $listItem) {
+			if (t3lib_div::validIP(str_replace('*', '0', $listItem))) {
+				$resolvedList[] = $listItem;
+			}
+			else {
+				$hosts = gethostbynamel($listItem);
+				if ($hosts) {
+					$resolvedList = array_merge($resolvedList, $hosts);
+				}
+			}
+		}
+		$resolvedList = array_unique($resolvedList);
+
+		return implode(',', $resolvedList);
 	}
 
 
