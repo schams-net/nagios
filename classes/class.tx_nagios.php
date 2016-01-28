@@ -220,6 +220,7 @@ class tx_nagios {
 		if(isset($securityNagiosServerList)
 		  && !empty($securityNagiosServerList)
 		  && is_string($securityNagiosServerList)) {
+
 			// resolve hostnames in list
 			$securityNagiosServerList = $this->resolveHostnamesInList($securityNagiosServerList);
 
@@ -234,12 +235,25 @@ class tx_nagios {
 			if(isset($this->validProxyHeaders) && is_array($this->validProxyHeaders) && count($this->validProxyHeaders) > 0) {
 				foreach($_SERVER as $httpHeaderKey => $httpHeaderValue) {
 					$httpHeaderKey = preg_replace('/^HTTP_/', '', trim(strtoupper($httpHeaderKey)));
+
+					// make sure HTTP header key and value exist and are valid
 					if( is_string($httpHeaderKey) && !empty($httpHeaderKey)
 					 && in_array($httpHeaderKey, $this->validProxyHeaders)
-					 && is_string($httpHeaderValue) && !empty($httpHeaderValue)
-					 && t3lib_div::validIPv4($httpHeaderValue) ) {
-						if(t3lib_div::cmpIP($httpHeaderValue, $securityNagiosServerList) === TRUE) {
-							return TRUE;
+					 && is_string($httpHeaderValue) && !empty($httpHeaderValue) ) {
+
+						// Some proxies/caches/load balancers send more than one IP address in a comma-separated list
+						// (for example: "X-FORWARDED-FOR: 123.45.67.89, 56.78.90.1")
+						// Split this list into single IP addresses and check every element.
+						$ipAddresses = explode(',', $httpHeaderValue);
+						foreach($ipAddresses as $singleIpAddress) {
+							$singleIpAddress = trim($singleIpAddress);
+
+							// *TODO* also check for IPv6 addresses
+							if(t3lib_div::validIPv4($singleIpAddress)) {
+								if(t3lib_div::cmpIP($singleIpAddress, preg_replace('/[^0-9,\*\.]/', '', $securityNagiosServerList)) === TRUE) {
+									return TRUE;
+								}
+							}
 						}
 					}
 				}
