@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2015-11-21T16:49:33Z" product-name="nagios">
+		<header/>
+		<body>
+			<trans-unit id="feature_typo3_version">
+				<source>TYPO3 Version:Include TYPO3 version in output</source>
+			</trans-unit>
+			<trans-unit id="feature_php_version">
+				<source>PHP Version: Include PHP version in output</source>
+			</trans-unit>
+			<trans-unit id="feature_extensionlist">
+				<source>Extension List:Include list of TYPO3 extensions and their version numbers in output</source>
+			</trans-unit>
+			<trans-unit id="feature_activated_extensions_only">
+				<source>Loaded Extensions Only:Limit list of TYPO3 extensions to activated extensions only (not recommended)</source>
+			</trans-unit>
+			<trans-unit id="feature_deprecation_log">
+				<source>Deprecation Log:Include status of deprecation log in output</source>
+			</trans-unit>
+			<trans-unit id="feature_application_context">
+				<source>Application Context:Include application context (e.g. production or development)</source>
+			</trans-unit>
+			<trans-unit id="feature_timestamp">
+				<source>Timestamp:Include current timestamp and timezone (server settings) in output</source>
+			</trans-unit>
+			<trans-unit id="feature_diskusage">
+				<source>Disk Usage:Include the size of current disk usage (available on UNIX/Linux systems only)</source>
+			</trans-unit>
+			<trans-unit id="feature_sitename">
+				<source>Site Name:Include TYPO3 site name in output</source>
+			</trans-unit>
+			<trans-unit id="feature_servername">
+				<source>Server Name: Include server name or HTTP host name in output</source>
+			</trans-unit>
+			<trans-unit id="security_supress_header">
+				<source>Supress Header:Supress header line (TYPO3 Nagios(R) Extension and version) in output</source>
+			</trans-unit>
+			<trans-unit id="security_nagios_serverlist">
+				<source>Nagios(R) servers:Comma separated list of IP addresses or hostnames of Nagios(R) servers allowed to retrieve information about this TYPO3 instance (specify the IP address/hostname of the Nagios server - and the Nagios server ONLY)</source>
+			</trans-unit>
+			<trans-unit id="security_proxy_headers">
+				<source>TYPO3 Behind Proxy Server:Take IP address forwarded by proxy servers in HTTP header into account (not recommended)</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
