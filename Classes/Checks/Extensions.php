@@ -1,7 +1,8 @@
 <?php
 namespace SchamsNet\Nagios\Checks;
-/**
- * This file is part of the TYPO3 CMS Extension "Nagios"
+
+/*
+ * This file is part of the TYPO3 CMS Extension "Nagios TYPO3 Monitoring"
  *
  * Author: Michael Schams <schams.net>
  * Website: https://schams.net
@@ -24,39 +25,43 @@ use TYPO3\CMS\Extensionmanager\Utility\ListUtility;
 /**
  * Class contains methods for extension-related checks, such as extension versions.
  */
-class Extensions {
-
+class Extensions
+{
 	/**
 	 * Returns an array with available/installed extensions
 	 *
 	 * @access	private
-	 * @param	object		$objectManager: object manager
-	 * @param	boolean		$loadedExtensionsOnly: controls, if only loaded extensions should be included (TRUE) or all extensions (FALSE)
+	 * @param	object		$objectManager object manager
+	 * @param	bool		$loadedExtensionsOnly controls, if only loaded extensions should be included (TRUE) or all extensions (FALSE)
+	 *
 	 * @return	array		List of available/installed extensions
 	 */
-    public function getAvailableExtensions($objectManager, $loadedExtensionsOnly = FALSE) {
-
+	public function getAvailableExtensions($objectManager, $loadedExtensionsOnly = FALSE)
+	{
 		$installedExtensions = array();
 
-		/** @var $objectManager ObjectManager */
+		/**
+		 * Object Manager
+		 * @var $objectManager ObjectManager
+		 */
 		$objectManager = GeneralUtility::makeInstance(ObjectManager::class);
 
-		/** @var $extensionListUtility ListUtility */
+		/**
+		 * Extension list utility object
+		 * @var $extensionListUtility ListUtility
+		 */
 		$extensionListUtility = $objectManager->get(ListUtility::class);
 
 		$availableExtensions = $extensionListUtility->getAvailableAndInstalledExtensionsWithAdditionalInformation();
-		foreach($availableExtensions as $extensionKey => $extensionDetails) {
+		foreach ($availableExtensions as $extensionKey => $extensionDetails) {
 
-			if( array_key_exists('type', $extensionDetails)
-			 && array_key_exists('version', $extensionDetails)
-			 && $this->isValidExtensionKey($extensionKey) === TRUE
-			 && $this->isValidExtensionVersion($extensionDetails['version']) === TRUE)
-			{
-				if(strtolower($extensionDetails['type']) == 'local') {
+			if ( array_key_exists('type', $extensionDetails)
+				&& array_key_exists('version', $extensionDetails)
+				&& $this->isValidExtensionKey($extensionKey) === TRUE
+				&& $this->isValidExtensionVersion($extensionDetails['version']) === TRUE) {
 
-					if( $loadedExtensionsOnly === FALSE
-					 || ($loadedExtensionsOnly === TRUE && ExtensionManagementUtility::isLoaded($extensionKey) === TRUE))
-					{
+				if (strtolower($extensionDetails['type']) == 'local') {
+					if ( $loadedExtensionsOnly === FALSE || ($loadedExtensionsOnly === TRUE && ExtensionManagementUtility::isLoaded($extensionKey) === TRUE)) {
 						$installedExtensions[] = $extensionKey . '-' . $extensionDetails['version'];
 					}
 				}
@@ -65,17 +70,19 @@ class Extensions {
 
 		// sort extension list by extension name
 		sort($installedExtensions);
-        return $installedExtensions;
-    }
+		return $installedExtensions;
+	}
 
 	/**
 	 * Returns an array with installed extensions (excludes extensions, which are available but not installed)
 	 *
 	 * @access	private
-	 * @param	object		$objectManager: object manager
+	 * @param	object		$objectManager object manager
+	 *
 	 * @return	array		List of installed extensions
 	 */
-	public function getInstalledExtensions($objectManager) {
+	public function getInstalledExtensions($objectManager)
+	{
 		return $this->getAvailableExtensions($objectManager, TRUE);
 	}
 
@@ -83,10 +90,12 @@ class Extensions {
 	 * Returns the version of a specific extension
 	 *
 	 * @access	private
-	 * @param	string		$extensionKey: extension key
+	 * @param	string		$extensionKey extension key
+	 *
 	 * @return	string		Extension version, e.g. "1.2.999"
 	 */
-	public function getExtensionVersion($extensionKey) {
+	public function getExtensionVersion($extensionKey)
+	{
 		return ExtensionManagementUtility::getExtensionVersion($extensionKey);
 	}
 
@@ -94,11 +103,13 @@ class Extensions {
 	 * Checks if syntax of extension key is valid
 	 *
 	 * @access	private
-	 * @param	string		$extensionKey: extension key
-	 * @return	boolean		TRUE if $extensionKey is a valid, FALSE otherwise
+	 * @param	string		$extensionKey extension key
+	 *
+	 * @return	bool		TRUE if $extensionKey is a valid, FALSE otherwise
 	 */
-	private function isValidExtensionKey($extensionKey) {
-		if(isset($extensionKey) && is_string($extensionKey) && preg_match('/^[a-z0-9_]{3,}$/', $extensionKey)) {
+	private function isValidExtensionKey($extensionKey)
+	{
+		if (isset($extensionKey) && is_string($extensionKey) && preg_match('/^[a-z0-9_]{3,}$/', $extensionKey)) {
 			return TRUE;
 		}
 		return FALSE;
@@ -108,11 +119,13 @@ class Extensions {
 	 * Checks if syntax of extension version is valid
 	 *
 	 * @access	private
-	 * @param	string		$version: version such as "1.2.999"
-	 * @return	boolean		TRUE if $version is a valid extension version, FALSE otherwise
+	 * @param	string		$version version such as "1.2.999"
+	 *
+	 * @return	bool		TRUE if $version is a valid extension version, FALSE otherwise
 	 */
-	private function isValidExtensionVersion($version = NULL) {
-		if(is_string($version) && preg_match('/^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$/', $version)) {
+	private function isValidExtensionVersion($version = NULL)
+	{
+		if (is_string($version) && preg_match('/^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$/', $version)) {
 			return TRUE;
 		}
 		return FALSE;

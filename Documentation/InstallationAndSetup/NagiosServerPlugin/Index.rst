@@ -25,17 +25,13 @@ Prerequisites
 
 Install the TYPO3 extension on the TYPO3 instance which should be monitored.
 
-At the Nagios® server side, install Nagios® `as documented <https://www.nagios.org/documentation/>`_. The following sections assume Nagios® is fully operational, configured and tested. We also assume that all Nagios® plugins are located in:
-
-::
-
-	/usr/local/nagios/libexec/
+At the Nagios® server side, install Nagios® `as documented <https://www.nagios.org/documentation/>`_. The following sections assume Nagios® is fully operational, configured and tested. We also assume that all Nagios® plugins are located in: ``/usr/local/nagios/libexec/``
 
 
 Download
 """"""""
 
-Download the TYPO3 CMS check plugin for Nagios® from the official `Nagios® Exchange portal <https://exchange.nagios.org/>`_ (search for "TYPO3"). The file name is typically ``nagios-check_typo3-1.0.0.3.tar.gz`` (version 1.0.0.3).
+Download the TYPO3 CMS check plugin for Nagios® from the official `Nagios® Exchange portal <https://exchange.nagios.org/>`_ (search for "TYPO3"). The file name is typically ``nagios-check_typo3-1.0.0.3.tar.gz`` (for version 1.0.0.3).
 
 
 Plugin Installation
@@ -78,7 +74,7 @@ As the next step, integrate the "TYPO3 check" in your Nagios® configuration. Fo
     }
 
 
-Please note that this is an example only. Change *example.com* accordingly: this is the fully qualified host name of your TYPO3 instance (the website you monitor). The configuration ``normal_check_interval`` defines how often this service should be checked under normal condition (in minutes). A value of "360" means every 6 hours.
+Please note that this is an example only. Change *example.com* accordingly: this is the fully qualified host name of your TYPO3 instance (the website you monitor). The configuration ``normal_check_interval`` defines how often this service should be checked under normal condition (in minutes). The value "360" means every 6 hours.
 
 Reload (or restart) the Nagios® server and check if everything works as expected or if the server reports an error. A successful reload looks like:
 
@@ -96,4 +92,4 @@ If the Nagios® server reports a configuration error, you made a mistake in one 
 	Reload aborted. Check your Nagios configuration.
 
 
-Assuming the reload/restart of the Nagios® server was successful, you can customise your configuration. Execute the "check\_typo3.sh" script in the command line to list all available options.
+Assuming the reload/restart of the Nagios® server was successful, you can customise your configuration. Execute the ``check_typo3.sh`` script in the command line without any parameters to list all available options.

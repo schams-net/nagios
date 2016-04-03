@@ -25,6 +25,8 @@ The following settings let you define which information should be passed to the 
    :align: center
    :width: 600
 
+   Illustration 6: Access the configuration in the Extension Manager
+
 
 Configuration Options: Features
 """""""""""""""""""""""""""""""
@@ -181,7 +183,7 @@ Additional Notes
 Show Loaded TYPO3 Extensions Only
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-TYPO3 has the concept of installed (imported) extensions and loaded extensions. An extension can be imported (e.g. by using the Extension Manager), which means, its files are copied to the extension directory (for example "typo3conf/ext/"). This does **not** mean, the extension is really used – it is installed/imported only. In order to enable it and make it available in the system, it has to be *activated*.
+TYPO3 has the concept of installed (imported) extensions and loaded extensions. An extension can be imported (e.g. by using the Extension Manager), which means, its files are copied to the extension directory (for example ``typo3conf/ext/``). This does **not** mean, the extension is really used – it is installed/imported only. In order to enable it and make it available in the system, it has to be *activated*.
 
 From a security perspective, unused TYPO3 extensions should not exist in the system (somewhere in the publicly accessible *DocumentRoot* of the web server). Even though they are not enabled (and TYPO3 never executes their code), the files reside in the file system and are accessible/readable/executable by the web server (and by a remote call).
 

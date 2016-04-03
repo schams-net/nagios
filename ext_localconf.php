@@ -1,6 +1,7 @@
 <?php
-/**
- * This file is part of the TYPO3 CMS Extension "Nagios"
+
+/*
+ * This file is part of the TYPO3 CMS Extension "Nagios TYPO3 Monitoring"
  *
  * Author: Michael Schams <schams.net>
  * Website: https://schams.net
@@ -17,5 +18,5 @@
 
 defined('TYPO3_MODE') or die();
 
-// register eID
+// Register eID
 $GLOBALS['TYPO3_CONF_VARS']['FE']['eID_include']['nagios'] = \SchamsNet\Nagios\Controller\NagiosController::class . '::execute';

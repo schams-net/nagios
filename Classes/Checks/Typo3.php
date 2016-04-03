@@ -1,7 +1,8 @@
 <?php
 namespace SchamsNet\Nagios\Checks;
-/**
- * This file is part of the TYPO3 CMS Extension "Nagios"
+
+/*
+ * This file is part of the TYPO3 CMS Extension "Nagios TYPO3 Monitoring"
  *
  * Author: Michael Schams <schams.net>
  * Website: https://schams.net
@@ -17,18 +18,18 @@ namespace SchamsNet\Nagios\Checks;
  */
 
 /**
- * [...]
+ * Class provides TYPO3 specific checks
  */
 class Typo3
 {
-
 	/**
 	 * Returns TYPO3 version as major.minor.release[-dev] value
 	 *
 	 * @access public
 	 * @return string
 	 */
-    public function getTypo3Version() {
+	public function getTypo3Version()
+	{
 		return TYPO3_version;
-    }
+	}
 }

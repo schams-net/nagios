@@ -1,7 +1,8 @@
 <?php
 namespace SchamsNet\Nagios\Access;
-/**
- * This file is part of the TYPO3 CMS Extension "Nagios"
+
+/*
+ * This file is part of the TYPO3 CMS Extension "Nagios TYPO3 Monitoring"
  *
  * Author: Michael Schams <schams.net>
  * Website: https://schams.net
@@ -22,8 +23,8 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * Provides methods to verify that accessing instance (client) has access to the TYPO3 CMS server
  * and is allowed to retrieve information from the instance (to prevent information disclosure).
  */
-class Access {
-
+class Access
+{
 	/**
 	 * List of valid proxy/cache/load balancer HTTP headers
 	 * (state values in upper case only!)
@@ -41,22 +42,23 @@ class Access {
 	 * Wildcards can be used, e.g. 123.45.*.*
 	 *
 	 * @access	public
-	 * @param	string		$securityNagiosServerList: comma-separated list of IP addresses of valid Nagios servers
-	 * @param	string		$takeProxyServerIntoAccount: controls, if additional HTTP headers should be checked (default: FALSE)
-	 * @return	boolean		TRUE if valid remote server, FALSE if access denied
+	 * @param	string		$securityNagiosServerList comma-separated list of IP addresses of valid Nagios servers
+	 * @param	string		$takeProxyServerIntoAccount controls, if additional HTTP headers should be checked (default: FALSE)
+	 *
+	 * @return	bool		TRUE if valid remote server, FALSE if access denied
 	 */
-	static public function isValidNagiosServer($securityNagiosServerList = NULL, $takeProxyServerIntoAccount = FALSE) {
-
-		if(isset($securityNagiosServerList)
-		  && !empty($securityNagiosServerList)
-		  && is_string($securityNagiosServerList)) {
+	static public function isValidNagiosServer($securityNagiosServerList = NULL, $takeProxyServerIntoAccount = FALSE)
+	{
+		if (isset($securityNagiosServerList)
+			&& !empty($securityNagiosServerList)
+			&& is_string($securityNagiosServerList)) {
 
 			// make sure, extension configuration only contains valid entries
 			// and hostnames are resolved to IP addresses
 			$securityNagiosServerList = self::resolveHostnamesInList($securityNagiosServerList);
 
 			// check remote IP address
-			if(GeneralUtility::cmpIP(GeneralUtility::getIndpEnv('REMOTE_ADDR'), $securityNagiosServerList) === TRUE) {
+			if (GeneralUtility::cmpIP(GeneralUtility::getIndpEnv('REMOTE_ADDR'), $securityNagiosServerList) === TRUE) {
 				return TRUE;
 			}
 
@@ -65,14 +67,14 @@ class Access {
 			// but the following code is safer.
 			// TYPO3's internal GeneralUtility::getIndpEnv() only supports some specific HTTP
 			// headers, but not X-Forwarded-For for example.
-			if($takeProxyServerIntoAccount === TRUE) {
-				foreach($_SERVER as $httpHeaderKey => $httpHeaderValue) {
+			if ($takeProxyServerIntoAccount === TRUE) {
+				foreach ($_SERVER as $httpHeaderKey => $httpHeaderValue) {
 					$httpHeaderKey = preg_replace('/^HTTP_/', '', trim(strtoupper($httpHeaderKey)));
-					if( is_string($httpHeaderKey) && !empty($httpHeaderKey)
-					 && in_array($httpHeaderKey, self::VALID_PROXY_HEADERS)
-					 && is_string($httpHeaderValue) && !empty($httpHeaderValue)
-					 && GeneralUtility::validIPv4($httpHeaderValue) ) {
-						if(GeneralUtility::cmpIP($httpHeaderValue, $securityNagiosServerList) === TRUE) {
+					if ( is_string($httpHeaderKey) && !empty($httpHeaderKey)
+					&& in_array($httpHeaderKey, self::VALID_PROXY_HEADERS)
+					&& is_string($httpHeaderValue) && !empty($httpHeaderValue)
+					&& GeneralUtility::validIPv4($httpHeaderValue) ) {
+						if (GeneralUtility::cmpIP($httpHeaderValue, $securityNagiosServerList) === TRUE) {
 							return TRUE;
 						}
 					}
@@ -92,25 +94,25 @@ class Access {
 	 * Returns comma-separated list of IP addresses, with hostnames resolved to IP addresses
 	 *
 	 * @access	public
-	 * @param	string	$list: comma-separated list of IP addresses and hostnames (wildcard allowed)
+	 * @param	string	$list comma-separated list of IP addresses and hostnames (wildcard allowed)
+	 *
 	 * @return	string	Comma-separated list of IP addresses (wildcard allowed)
 	 */
-	public function resolveHostnamesInList($list) {
-
+	public function resolveHostnamesInList($list)
+	{
 		$resolvedList = array();
 		$list = GeneralUtility::trimExplode(',', $list, TRUE);
-		foreach($list as $item) {
-			if(GeneralUtility::validIP(str_replace('*', '0', $item))) {
-				if(!in_array($item, self::INVALID_IP_ADDRESSES)) {
+		foreach ($list as $item) {
+			if (GeneralUtility::validIP(str_replace('*', '0', $item))) {
+				if (!in_array($item, self::INVALID_IP_ADDRESSES)) {
 					// item is a valid IP address
 					$resolvedList[] = $item;
 				}
-			}
-			else {
+			} else {
 
 				// convert hostname to IP address
 				$hosts = gethostbynamel($item);
-				if($hosts) {
+				if ($hosts) {
 					$resolvedList = array_merge($resolvedList, $hosts);
 				}
 			}

@@ -30,12 +30,14 @@ The TYPO3 Nagios® Extension gathers some information about the TYPO3 CMS system
    :align: left
    :width: 600
 
+   Illustration 1: Nagios server and TYPO3 instance
+
 
 The Nagios® server (left) contains the Nagios® TYPO3 plugin which communicates via HTTP (see next section) with one or more TYPO3 servers. The other side - the TYPO3 server (right) - contains the TYPO3 Nagios® Extension (which is described in this document).
 
 A typical use case for Nagios® and this TYPO3 CMS extension is to monitor a server farm with dozens of TYPO3 servers and to ensure the infrastructure is up-to-date and in a secure and "healthy" condition.
 
-This documentation focuses on the TYPO3 extension predominantly. The counterpart (the Nagios® server and the "check\_typo3.sh" plugin) is briefly described in chapter :ref:`nagios-server-plugin`. Further installation and configuration instruction are available at `schams.net <https://schams.net/nagios>`_.
+This documentation focuses on the TYPO3 extension predominantly. The counterpart (the Nagios® server and the ``check_typo3.sh`` plugin) is briefly described in chapter :ref:`nagios-server-plugin`. Further installation and configuration instruction are available at `schams.net <https://schams.net/nagios>`_.
 
 
 Detailed Overview
@@ -45,7 +47,7 @@ Nagios® is the de-facto standard of open source network and server monitoring. 
 
 Nagios® comes with a comprehensive set of checks off the shelf including PING (server alive), disk space, server load, free memory, etc. (on a server level) but also SMTP, SSH, HTTP response, etc. (on a service/application level). Apart of those basic checks Nagios® allows system administrators to implement and configure their own checks.
 
-The TYPO3 Nagios® Extension in combination with the TYPO3 check plugin for Nagios® ("check\_typo3.sh") enables system administrators to gather information from a TYPO3 system and to react if the web instance reports a specific condition.
+The TYPO3 Nagios® Extension in combination with the TYPO3 check plugin for Nagios® (``check_typo3.sh``) enables system administrators to gather information from a TYPO3 system and to react if the web instance reports a specific condition.
 
 In a practical sense this means system managers can be warned if a TYPO3 server runs with a specific (e.g. outdated) version of TYPO3 (or PHP) or TYPO3's deprecation logging is enabled (and the log file fills up the disk space on a production server) or (a very simple but maybe the most used scenario) the TYPO3 server is not responding (unable to report anything) at all.
 

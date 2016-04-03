@@ -24,6 +24,8 @@ The following screenshots clarify the extension configuration options and provid
    :align: center
    :width: 600
 
+   Illustration 3: Extension configuration
+
 
 **Screenshot above:**
 The extension configurations allow you to enable or disable each feature of the TYPO3 instance. The settings control which information should be passed to Nagios®. The Nagios® TYPO3 plugin (the counterpart of the extension) reads this data and reacts according to the configuration (for example: triggers a warning if TYPO3 reports an old version).
@@ -33,6 +35,8 @@ The extension configurations allow you to enable or disable each feature of the 
    :name: Illustration 4
    :align: center
    :width: 600
+
+   Illustration 4: Nagios output (no errors, no warnings)
 
 
 **Screenshot above:**
@@ -44,6 +48,8 @@ A typical view of the Nagios® server web interface. The summary of the service 
    :align: center
    :width: 600
 
+   Illustration 5: Nagios output shows a critical error
+
 
 **Screenshot above:**
-The same Nagios® server web interface – but in this case Nagios® detected an insecure extension (powermail version 1.5.4, see `TYPO3 Security Bulletin TYPO3-SA-2010-021 <http://typo3.org/teams/security/security-bulletins/typo3-extensions/typo3-sa-2010-021/>`_ ) and was configured to generate a critical condition for the appropriate server. Other options would be to configure Nagios® to generate warnings if the TYPO3 version is outdated or the PHP version is a specific one for example.
+The same Nagios® server web interface – but in this case Nagios® detected an insecure extension (powermail version 1.5.4, see `TYPO3 Security Bulletin TYPO3-SA-2010-021 <http://typo3.org/teams/security/security-bulletins/typo3-extensions/typo3-sa-2010-021/>`_) and was configured to generate a critical condition for the appropriate server. Other options would be to configure Nagios® to generate warnings if the TYPO3 version is outdated or the PHP version is a specific one for example.

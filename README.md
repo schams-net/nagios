@@ -12,15 +12,15 @@ This TYPO3 CMS extension gathers information about the TYPO3 instance for a Nagi
 Documentation
 -------------
 
-A manual is available at: https://schams.net/nagios
+The complete documentation is available: https://schams.net/nagios
 
 Find out more about TYPO3 CMS at: https://typo3.org
 
 System Requirements
 -------------------
 
-* TYPO3 CMS version 7
-* PHP version 5.5+
+* TYPO3 CMS version 7.6
+* PHP version 5.5 or 5.6
 
 License
 -------

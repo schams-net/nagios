@@ -1,7 +1,8 @@
 <?php
 namespace SchamsNet\Nagios\Checks;
-/**
- * This file is part of the TYPO3 CMS Extension "Nagios"
+
+/*
+ * This file is part of the TYPO3 CMS Extension "Nagios TYPO3 Monitoring"
  *
  * Author: Michael Schams <schams.net>
  * Website: https://schams.net
@@ -24,8 +25,8 @@ use TYPO3\CMS\Core\Utility\CommandUtility;
  * Server-related configurations usually require system administrator privileges
  * and can not be changed/adjusted by a TYPO3 integrator.
  */
-class Server {
-
+class Server
+{
 	/**
 	 * Returns PHP version as major-minor-release value (values such as "5.6.7-2ubuntu5.6" gets cleaned up)
 	 * Example: 5.6.7
@@ -33,9 +34,10 @@ class Server {
 	 * @access public
 	 * @return string
 	 */
-    public function getPhpVersion() {
+	public function getPhpVersion()
+	{
 		return substr(PHP_VERSION, 0, strpos(PHP_VERSION . '-', '-'));
-    }
+	}
 
 	/**
 	 * Returns server name (as configured in web server configuration) or HTTP HOST name
@@ -46,15 +48,14 @@ class Server {
 	 * @access public
 	 * @return string server name, host name or "not-supported" otherwise
 	 */
-	public function getServerName() {
-
+	public function getServerName()
+	{
 		$serverVariables = array('SERVER_NAME', 'TYPO3_HOST_ONLY', 'HTTP_HOST');
-		foreach($serverVariables as $variable) {
+		foreach ($serverVariables as $variable) {
 			$value = GeneralUtility::getIndpEnv($variable);
-			if(is_string($value) && !empty($value)) {
+			if (is_string($value) && !empty($value)) {
 				return $value;
-			}
-			else {
+			} else {
 				$value = $_SERVER[$variable];
 				if (is_string($value) && !empty($value)) {
 					return $value;
@@ -70,7 +71,8 @@ class Server {
 	 *
 	 * @return string
 	 */
-    public function getTimeStamp() {
+	public function getTimeStamp()
+	{
 		return date('U-T');
 	}
 
@@ -82,11 +84,11 @@ class Server {
 	 * system can store some files *outside* of this directory.
 	 *
 	 * @access	public
-	 * @return	array	Current amount of DB processes (string) or FALSE (boolean) if an error occured
+	 * @return	mixed	Current amount of DB processes (string) or FALSE (bool) if an error occured
 	 */
-	public function getDiskUsage() {
-
-		if(strtoupper(substr(PHP_OS, 0, 3)) !== 'WIN') {
+	public function getDiskUsage()
+	{
+		if (strtoupper(substr(PHP_OS, 0, 3)) !== 'WIN') {
 
 			// Note: CommandUtility::getCommand() returns FALSE even if the command
 			// was found but is not executable. If open_basedir is enabled, the path
@@ -95,7 +97,7 @@ class Server {
 			$diskUsageCommand = CommandUtility::getCommand('du');
 
 			if (is_string($diskUsageCommand) && !empty($diskUsageCommand) && is_executable($diskUsageCommand)) {
-				$diskUsageCommand.= ' --summarize --block-size=1 '.escapeshellarg(PATH_site).' 2>&1';
+				$diskUsageCommand .= ' --summarize --block-size=1 ' . escapeshellarg(PATH_site) . ' 2>&1';
 				$diskUsageResult = CommandUtility::exec($diskUsageCommand);
 				return preg_replace('/^([0-9]*).*$/', '$1', $diskUsageResult);
 			}

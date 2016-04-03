@@ -24,8 +24,10 @@ The following illustration shows the technical concept of a typical monitoring s
    :align: left
    :width: 600
 
+   Illustration 2: Technical concept
 
-Simplified, the Nagios® core executes its plugin "check\_typo3.sh" in a configured time interval. The plugin reads the configuration ("check\_typo3.cfg") and requests the TYPO3 server via HTTP. The request includes a unique eID (eID=nagios) and (optionally) some further parameters.
+
+Simplified, the Nagios® core executes its plugin ``check_typo3.sh`` in a configured time interval. The plugin reads the configuration (``check_typo3.cfg``) and requests the TYPO3 server via HTTP. The request includes a unique eID (eID=nagios) and (optionally) some further parameters.
 
 TYPO3 receives the request and executes the Nagios® Extension which checks if the requesting server is allowed to access the data. If so, the extension gathers some information about the TYPO3 instance (all information is configurable in the TYPO3 backend) and shows it in a propriety format (text/plain).
 

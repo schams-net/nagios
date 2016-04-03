@@ -21,7 +21,7 @@ TYPO3 Behind a Proxy
 
 In a server setup where the TYPO3 instance has been placed behind a proxy or caching server, load balancer, CDN solution, etc. (we will use the terminology "proxy server" from now on) the IP address of the client that initiates the HTTP request (and tries to retrieve information about the TYPO3 instance) is not the Nagios® server. Therefore, the comma-separated list of IP addresses, which are allowed to retrieve information about the TYPO3 instance, possibly does not include the "correct" IP address and the TYPO3 Nagios® extension would always deny access.
 
-You can check the web server's access log to find out what the correct IP address is, that accesses the extension (search for requests such as "/?eID=nagios").
+You can check the web server's access log to find out what the correct IP address is, that accesses the extension (search for requests such as ``/?eID=nagios``).
 
 If the proxy server is on a  **different** machine, add this IP address to the list. If more than one proxy server is used, add every IP address (comma-separated) to the list.
 
@@ -35,4 +35,4 @@ Currently supported HTTP headers are:
 
 - ``X-Forwarded-For``
 
-However, enabling this feature comes with a downside, see chapter :ref:`security-aspects`.
+However enabling this feature comes with a downside, see chapter :ref:`security-aspects`.

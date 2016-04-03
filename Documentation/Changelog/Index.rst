@@ -24,10 +24,11 @@ Extension Versions 2.0.x
 =======  ==========  =======================================================================
 Version  Date        Changes
 =======  ==========  =======================================================================
-2.0.0    2016-03-06  - Re-development from scratch using Extbase and modern PHP functions and methods
-                     - Documentation updated
-                     - Release as a beta version at `schams.net <https://schams.net/nagios/>`_ (December 2015)
-                     - Release as "master" branch at `GitHub <https://github.com/schams-net/nagios/>`_ (March 2016)
+2.0.0    2015-12-06  - Documentation updated
+                     - Release of re-developed extension as a beta version at `schams.net <https://schams.net>`_
+2.0.1    2016-04-03  - Documentation updated (screenshots created with TYPO3 CMS 7.6)
+                     - Source code updated to follow PSR-1/PSR-2 coding guidelines
+                     - Release of re-developed extension as a stable version (published at the `TYPO3 Extension Repository <http://typo3.org/extensions/repository/>`_)
 =======  ==========  =======================================================================
 
 
@@ -83,5 +84,5 @@ Version  Date        Changes
                      - Officially released as a stable version (published at the `TYPO3 Extension Repository <http://typo3.org/extensions/repository/>`_)
 1.2.12   2014-08-25  - Documentation updated
                      - Code cleaned up
-                     - Source code transferred to `GitHub <https://github.com/schams-net/nagios/>`_
+                     - Source code transferred to GitHub
 =======  ==========  =======================================================================

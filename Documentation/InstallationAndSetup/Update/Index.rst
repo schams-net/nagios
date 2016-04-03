@@ -26,7 +26,7 @@ Due to the fact that version 2.0.x is a re-development of the extension from scr
 
 As a consequence, the easiest is to **inactivate and delete** the old version of the extension, update TYPO3 CMS and install the new version 2.0.x via the Extension Manager including the steps described in chapter :ref:`step-by-step-installation`. 
 
-Please note that you possibly need to adjust the arguments of the check script on the Nagios® server and remove ``pid <pageid>`` (or ``--pageid <pageid>``) and replace it with ``--resource /?eID=nagios``. In newer versions of the "check\_typo3.sh" plugin for Nagios®, even the ``--resource`` parameter is not required. A typical line in the Nagios® configuration file looks like:
+Please note that you possibly need to adjust the arguments of the check script on the Nagios® server and remove ``pid <pageid>`` (or ``--pageid <pageid>``) and replace it with ``--resource /?eID=nagios``. In newer versions of the ``check_typo3.sh`` plugin for Nagios®, even the ``--resource`` parameter is not required. A typical line in the Nagios® configuration file looks like:
 
 ::
 
