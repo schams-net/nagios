@@ -32,7 +32,7 @@ The Nagios® server (left) contains the Nagios® TYPO3 plugin which communicates
 
 A typical use case for Nagios® and this TYPO3 CMS extension is to monitor a server farm with dozens of TYPO3 servers and to ensure the infrastructure is up-to-date and in a secure and "healthy" condition.
 
-It is important to understand that this documentation covers the TYPO3 extension only. The counterpart (the Nagios® server and the "check\_typo3.sh" plugin) is not part of this documentation. You find further installation and configuration instruction on the web site at `http://schams.net/nagios <http://schams.net/nagios>`_.
+It is important to understand that this documentation covers the TYPO3 extension only. The counterpart (the Nagios® server and the "check\_typo3.sh" plugin) is not part of this documentation. You find further installation and configuration instruction on the web site at `https://schams.net/nagios <https://schams.net/nagios>`_.
 
 
 Detailed Overview

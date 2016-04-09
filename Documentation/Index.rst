@@ -23,7 +23,7 @@ TYPO3 CMS Extension: Nagios Monitoring
       nagios
 
 :Version:
-      1.2.12-beta
+      1.2.12
 
 :Language:
       en
@@ -35,7 +35,7 @@ TYPO3 CMS Extension: Nagios Monitoring
       Nagios, monitoring, security
 
 :Copyright:
-      2000-2014
+      2010-2016
 
 :Author:
       Michael Schams <schams.net>

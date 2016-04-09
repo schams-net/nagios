@@ -137,6 +137,6 @@ The output of the extension shows a few lines with prefixed '#' as comments. Tho
 
 ::
 
-   # Nagios TYPO3 Monitoring Version 1.2.11 - http://schams.net/nagios 
+   # Nagios TYPO3 Monitoring Version 1.2.12 - https://schams.net/nagios
 
 I have been asked to suppress these lines and I implemented an option to allow administrators to deactivate them. Nevertheless, I am convinced that "security by obscurity" is definitely not the best approach and it should not make a difference to activate or deactivate this feature. If you are in doubt, leave this checkbox unticked.

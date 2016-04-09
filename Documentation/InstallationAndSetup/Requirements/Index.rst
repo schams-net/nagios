@@ -20,7 +20,7 @@ Requirements
 
 - TYPO3 version 4.5.0 or higher
 
-Tested with various TYPO3 versions between 4.0.x to 4.7.x, as well as 6.0.x, 6.1.x and 6.2.x, see `http://schams.net/nagios <http://schams.net/nagios>`_ for a support matrix.
+Tested with various TYPO3 versions between 4.0.x to 4.7.x, as well as 6.0.x, 6.1.x and 6.2.x, see `https://schams.net/nagios <https://schams.net/nagios>`_ for a support matrix.
 
 - PHP version 5
 

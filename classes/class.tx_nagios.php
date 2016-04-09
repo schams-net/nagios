@@ -1,7 +1,7 @@
 <?php
 /**
  * This file is part of the TYPO3 CMS Extension "Nagios"
- * Author: Michael Schams - http://schams.net
+ * Author: Michael Schams - https://schams.net
  *
  * It is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License, either version 2

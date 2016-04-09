@@ -1,7 +1,7 @@
 <?php
 /**
  * This file is part of the TYPO3 CMS Extension "Nagios"
- * Author: Michael Schams - http://schams.net
+ * Author: Michael Schams - https://schams.net
  *
  * It is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License, either version 2
@@ -235,7 +235,7 @@ class tx_nagios_eid {
 		// add header ("Nagios TYPO3 Monitoring Version x.x.x...") if not permitted in extension configuration
 		$header = '';
 		if($this->extensionConfiguration['securitySupressHeader'] != 1) {
-			$header.= '# '.$this->extensionDetails['title'].' Version '.$this->extensionDetails['version'].' - http://schams.net/nagios' . PHP_EOL;
+			$header.= '# '.$this->extensionDetails['title'].' Version '.$this->extensionDetails['version'].' - https://schams.net/nagios' . PHP_EOL;
 
 			if($nagiosPluginVersion !== FALSE && is_string($nagiosPluginVersion) && !empty($nagiosPluginVersion)) {
 				$header.= '# Nagios Plugin Version '.$nagiosPluginVersion.' (IP: ' . t3lib_div::getIndpEnv('REMOTE_ADDR') . ')' . PHP_EOL;

@@ -31,8 +31,8 @@ This section describes the installation steps in detail. Please note that this d
 **Step 5:** Assuming the installation of the TYPO3 Nagios® extension was successful, go to the list of imported extensions and enable (*install*) it.
 Newer versions of TYPO3 CMS automatically enable extensions and therefore, this step is not always required (it depends on the TYPO3 version used).
 
-If your TYPO3 server can not communicate with the TYPO3 Extension Repository (e.g. due to a restrictive firewall setup), you can upload the T3X file to the server instead of importing the extension from the TER. This method may also be useful if you want to import/install a version that is not officially released yet. See "Download" page at `http://schams.net/nagios <http://schams.net/nagios>`_ for further details.
+If your TYPO3 server can not communicate with the TYPO3 Extension Repository (e.g. due to a restrictive firewall setup), you can upload the T3X file to the server instead of importing the extension from the TER. This method may also be useful if you want to import/install a version that is not officially released yet. See "Download" page at `https://schams.net/nagios <https://schams.net/nagios>`_ for further details.
 
 After the extension has been imported and installed/enabled, you should configure the output. Chapter :ref:`administration-and-configuration` describes the options in detail.
 
-Please note that you also have to install and set up the counterpart: Nagios® server and Nagios® "check\_typo3" plugin, see: `http://schams.net/nagios <http://schams.net/nagios>`_
+Please note that you also have to install and set up the counterpart: Nagios® server and Nagios® "check\_typo3" plugin, see: `https://schams.net/nagios <https://schams.net/nagios>`_

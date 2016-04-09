@@ -31,7 +31,7 @@ If the IP address of the Nagios® server which initiates the requests to TYPO3 i
 
 ::
 
-   # Nagios TYPO3 Monitoring Version 1.2.11 – http://schams.net/nagios
+   # Nagios TYPO3 Monitoring Version 1.2.12 – https://schams.net/nagios
    #
    # ACCESS DENIED 
    # Remote server is not allowed to retrieve information about this TYPO3 server. 

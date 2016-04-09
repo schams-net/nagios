@@ -1,3 +1,21 @@
+2016-04-09 Michael Schams <schams.net>
+
+	* documentation and ChangeLog updated
+	* version raised to 1.2.12
+	* extension released as version 1.2.12 in TYPO3 Extension Repository (TER)
+
+2016-01-31 Michael Schams <schams.net>
+
+	* allow for multiple IP addresses sent by proxies/caches/load balancers
+
+2015-08-31 Michael Schams <schams.net>
+
+	* allow hostnames in list of allowed Nagios servers (merged)
+
+2015-08-10 Gernot Leitgab <leitgab@gmail.com>
+
+	* allow hostnames in list of allowed Nagios servers (pull-request)
+
 2014-08-24 Michael Schams <schams.net>
 
 	* documentation updated (typos, styles and formatting corrected)
