@@ -22,7 +22,7 @@ $EM_CONF[$_EXTKEY] = array (
 Detailed documentation, screenshots and more at: http://schams.net/nagios',
 	'category' => 'misc',
 	'version' => '2.0.1',
-	'state' => 'beta',
+	'state' => 'stable',
 	'createDirs' => '',
 	'clearcacheonload' => TRUE,
 	'author' => 'Michael Schams (schams.net)',

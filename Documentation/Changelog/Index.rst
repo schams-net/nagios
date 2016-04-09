@@ -26,7 +26,7 @@ Version  Date        Changes
 =======  ==========  =======================================================================
 2.0.0    2015-12-06  - Documentation updated
                      - Release of re-developed extension as a beta version at `schams.net <https://schams.net>`_
-2.0.1    2016-04-03  - Documentation updated (screenshots created with TYPO3 CMS 7.6)
+2.0.1    2016-04-09  - Documentation updated (screenshots created with TYPO3 CMS 7.6)
                      - Source code updated to follow PSR-1/PSR-2 coding guidelines
                      - Release of re-developed extension as a stable version (published at the `TYPO3 Extension Repository <http://typo3.org/extensions/repository/>`_)
 =======  ==========  =======================================================================
@@ -82,7 +82,11 @@ Version  Date        Changes
                      - Header comments simplified/updated
                      - Deprecation warning eliminated: EidUtility::connectDB()
                      - Officially released as a stable version (published at the `TYPO3 Extension Repository <http://typo3.org/extensions/repository/>`_)
-1.2.12   2014-08-25  - Documentation updated
-                     - Code cleaned up
-                     - Source code transferred to GitHub
+1.2.12   2016-04-09  - Documentation updated
+                     - Code clean up
+                     - TYPO3 CMS compatibility information updated
+                     - Transfer source code to GitHub
+                     - Allow hostnames in list of allowed Nagios servers
+                     - Allow for multiple IP addresses sent by proxies/caches/load balancers
+                     - Officially released as a stable version (published at the `TYPO3 Extension Repository <http://typo3.org/extensions/repository/>`_ "TER")
 =======  ==========  =======================================================================

@@ -4,10 +4,10 @@
 
 ---
 conf.py:
-  copyright: 2000-2016
+  copyright: 2010-2016
   project: Nagios
   version: 2
-  release: 0.0
+  release: 0.1
   latex_elements:
     papersize: a4paper
     pointsize: 10pt
