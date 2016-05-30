@@ -23,7 +23,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 
-use SchamsNet\Nagios\Access\Access;
+use SchamsNet\Nagios\Access\AccessManager;
 use SchamsNet\Nagios\Checks\Server;
 use SchamsNet\Nagios\Checks\Typo3;
 use SchamsNet\Nagios\Checks\Configuration;
@@ -64,6 +64,14 @@ class NagiosController
 	 * @var object
 	 */
 	private $objectManager = NULL;
+
+	/**
+	 * Access Manager
+	 *
+	 * @access private
+	 * @var object
+	 */
+	private $accessManager = NULL;
 
 	/**
 	 * Server object (see: SchamsNet\Nagios\Checks\Server.php)
@@ -113,6 +121,12 @@ class NagiosController
 		 * @var $objectManager ObjectManager
 		 */
 		$this->objectManager = GeneralUtility::makeInstance(ObjectManager::class);
+
+		/**
+		 * Access Manager
+		 * @var $accessManager AccessManager
+		 */
+		$this->accessManager = GeneralUtility::makeInstance(AccessManager::class);
 
 		/**
 		 * Server object
@@ -168,7 +182,7 @@ class NagiosController
 		}
 
 		// ...
-		if (Access::isValidNagiosServer($this->extensionConfiguration['securityNagiosServerList'], $takeProxyServerIntoAccount) === TRUE) {
+		if ($this->accessManager->isValidNagiosServer($this->extensionConfiguration['securityNagiosServerList'], $takeProxyServerIntoAccount) === TRUE) {
 
 			// ...
 			if ($this->extensionConfiguration['featureExtensionList'] != 0) {

@@ -23,18 +23,24 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * Provides methods to verify that accessing instance (client) has access to the TYPO3 CMS server
  * and is allowed to retrieve information from the instance (to prevent information disclosure).
  */
-class Access
+class AccessManager
 {
 	/**
 	 * List of valid proxy/cache/load balancer HTTP headers
 	 * (state values in upper case only!)
+	 *
+	 * @var		array
+	 * @access	private
 	 */
-	const VALID_PROXY_HEADERS = array('X_REAL_IP', 'X_FORWARDED_FOR');
+	private $validProxyHeaders = array('X_REAL_IP', 'X_FORWARDED_FOR');
 
 	/**
 	 * List of invalid IP addresses
+	 *
+	 * @var		array
+	 * @access	private
 	 */
-	const INVALID_IP_ADDRESSES = array('*.*.*.*', '0.0.0.0');
+	private $invalidIpAddresses = array('*.*.*.*', '0.0.0.0');
 
 	/**
 	 * Returns TRUE if list of valid Nagios servers contains the IP address of the requesting server (remote address).
@@ -47,7 +53,7 @@ class Access
 	 *
 	 * @return	bool		TRUE if valid remote server, FALSE if access denied
 	 */
-	static public function isValidNagiosServer($securityNagiosServerList = NULL, $takeProxyServerIntoAccount = FALSE)
+	public function isValidNagiosServer($securityNagiosServerList = NULL, $takeProxyServerIntoAccount = FALSE)
 	{
 		if (isset($securityNagiosServerList)
 			&& !empty($securityNagiosServerList)
@@ -55,7 +61,7 @@ class Access
 
 			// make sure, extension configuration only contains valid entries
 			// and hostnames are resolved to IP addresses
-			$securityNagiosServerList = self::resolveHostnamesInList($securityNagiosServerList);
+			$securityNagiosServerList = $this->resolveHostnamesInList($securityNagiosServerList);
 
 			// check remote IP address
 			if (GeneralUtility::cmpIP(GeneralUtility::getIndpEnv('REMOTE_ADDR'), $securityNagiosServerList) === TRUE) {
@@ -71,7 +77,7 @@ class Access
 				foreach ($_SERVER as $httpHeaderKey => $httpHeaderValue) {
 					$httpHeaderKey = preg_replace('/^HTTP_/', '', trim(strtoupper($httpHeaderKey)));
 					if ( is_string($httpHeaderKey) && !empty($httpHeaderKey)
-					&& in_array($httpHeaderKey, self::VALID_PROXY_HEADERS)
+					&& in_array($httpHeaderKey, $this->validProxyHeaders)
 					&& is_string($httpHeaderValue) && !empty($httpHeaderValue)
 					&& GeneralUtility::validIPv4($httpHeaderValue) ) {
 						if (GeneralUtility::cmpIP($httpHeaderValue, $securityNagiosServerList) === TRUE) {
@@ -104,7 +110,7 @@ class Access
 		$list = GeneralUtility::trimExplode(',', $list, TRUE);
 		foreach ($list as $item) {
 			if (GeneralUtility::validIP(str_replace('*', '0', $item))) {
-				if (!in_array($item, self::INVALID_IP_ADDRESSES)) {
+				if (!in_array($item, $this->invalidIpAddresses)) {
 					// item is a valid IP address
 					$resolvedList[] = $item;
 				}
