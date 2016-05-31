@@ -29,6 +29,8 @@ Version  Date        Changes
 2.0.1    2016-04-09  - Documentation updated (screenshots created with TYPO3 CMS 7.6)
                      - Source code updated to follow PSR-1/PSR-2 coding guidelines
                      - Release of re-developed extension as a stable version (published at the `TYPO3 Extension Repository <http://typo3.org/extensions/repository/>`_)
+2.0.2    2016-05-31  - Compatibility to PHP version 5.5 re-instituted
+                     - Release of re-developed extension as a stable version (published at the `TYPO3 Extension Repository <http://typo3.org/extensions/repository/>`_)
 =======  ==========  =======================================================================
 
 
