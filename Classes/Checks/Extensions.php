@@ -21,6 +21,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Extensionmanager\Utility\ListUtility;
+use SchamsNet\Nagios\Controller\NagiosController;
 
 /**
  * Class contains methods for extension-related checks, such as extension versions.
@@ -62,7 +63,7 @@ class Extensions
 
 				if (strtolower($extensionDetails['type']) == 'local') {
 					if ( $loadedExtensionsOnly === FALSE || ($loadedExtensionsOnly === TRUE && ExtensionManagementUtility::isLoaded($extensionKey) === TRUE)) {
-						$installedExtensions[] = $extensionKey . '-' . $extensionDetails['version'];
+						$installedExtensions[] = $extensionKey . '-' . NagiosController::KEY_VERSION . '-' . $extensionDetails['version'];
 					}
 				}
 			}
