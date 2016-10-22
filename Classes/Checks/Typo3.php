@@ -22,14 +22,14 @@ namespace SchamsNet\Nagios\Checks;
  */
 class Typo3
 {
-	/**
-	 * Returns TYPO3 version as major.minor.release[-dev] value
-	 *
-	 * @access public
-	 * @return string
-	 */
-	public function getTypo3Version()
-	{
-		return TYPO3_version;
-	}
+    /**
+     * Returns TYPO3 version as major.minor.release[-dev] value
+     *
+     * @access public
+     * @return string
+     */
+    public function getTypo3Version()
+    {
+        return TYPO3_version;
+    }
 }
