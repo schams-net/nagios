@@ -33,6 +33,20 @@ Please note that you possibly need to adjust the arguments of the check script o
    check_command           check_typo3!--hostname example.com
 
 
+.. _update-from-2-0-x-to-2-1-x:
+
+Update from version 2.0.x to version 2.1.x
+""""""""""""""""""""""""""""""""""""""""""
+
+In version 1.x.x of the extension, the extension list showed the keyword ``version`` between the extension key and the version number. This keyword has been accidentally dropped in version 2.0.x. The Nagios plugin ``check_typo3.sh`` supports both variants: extension list with and without the keyword ``version``. The output of the extension list has been fixed with version 2.1.0 and shows the keyword ``version`` again.
+
+If you update from version 2.0.x to version 2.1.x and use the Nagios plugin version 1.0.0.4 or higher, everything should be fine.
+
+If you update from version 2.0.x to version 2.1.x and use your own scripts or methods to parse the output of ``EXT:nagios``, make sure they support the re-implemented keyword ``version`` between the extension key and the version number.
+
+You can read further details about this issue at https://github.com/schams-net/nagios/issues/6
+
+
 Removed and Added Features
 """"""""""""""""""""""""""
 

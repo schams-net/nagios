@@ -21,7 +21,7 @@ $EM_CONF[$_EXTKEY] = array (
     'description' => 'Monitors TYPO3 instances and warns about insecure extensions, old TYPO3 versions, wrong PHP versions, etc. Requires a Nagios monitoring server.
 Detailed documentation, screenshots and more at: http://schams.net/nagios',
     'category' => 'misc',
-    'version' => '2.0.3',
+    'version' => '2.1.0',
     'state' => 'stable',
     'createDirs' => '',
     'clearcacheonload' => true,
@@ -30,8 +30,8 @@ Detailed documentation, screenshots and more at: http://schams.net/nagios',
     'author_company' => 'https://schams.net',
     'constraints' => array (
         'depends' => array (
-            'php' => '5.5.0-5.6.99',
-            'typo3' => '7.0.0-7.6.999',
+            'php' => '5.5.0-7.0.99',
+            'typo3' => '7.0.0-8.999.999',
         ),
         'conflicts' => array (
         ),
