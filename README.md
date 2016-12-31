@@ -19,8 +19,8 @@ Find out more about TYPO3 CMS at: https://typo3.org
 System Requirements
 -------------------
 
-* TYPO3 CMS version 7.6
-* PHP version 5.5 or 5.6
+* TYPO3 CMS version 7.6 or 8.x
+* PHP version 5.5, 5.6 or 7.0
 
 License
 -------
