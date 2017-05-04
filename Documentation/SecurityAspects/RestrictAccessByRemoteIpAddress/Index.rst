@@ -38,7 +38,7 @@ If the IP address or fully qualified hostname of the Nagios® server which initi
 
 ::
 
-   # Nagios TYPO3 Monitoring Version 2.1.0 – https://schams.net/nagios
+   # Nagios TYPO3 Monitoring Version 2.1.1 – https://schams.net/nagios
    # ACCESS DENIED
    MESSAGE:access denied
 

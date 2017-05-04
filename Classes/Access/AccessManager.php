@@ -76,10 +76,18 @@ class AccessManager
                     $httpHeaderKey = preg_replace('/^HTTP_/', '', trim(strtoupper($httpHeaderKey)));
                     if (is_string($httpHeaderKey) && !empty($httpHeaderKey)
                     && in_array($httpHeaderKey, $this->validProxyHeaders)
-                    && is_string($httpHeaderValue) && !empty($httpHeaderValue)
-                    && GeneralUtility::validIPv4($httpHeaderValue) ) {
-                        if (GeneralUtility::cmpIP($httpHeaderValue, $securityNagiosServerList) === true) {
-                            return true;
+                    && is_string($httpHeaderValue) && !empty($httpHeaderValue) ) {
+
+                        // allow for comma-separated list of multiple IP addresses,
+                        // for example: "123.10.10.10, 123.10.10.20"
+                        $candidates = explode(',', $httpHeaderValue);
+                        $candidates = array_map('trim', $candidates);
+
+                        foreach ($candidates as $candidate) {
+                            if (GeneralUtility::validIPv4($candidate)
+                            && GeneralUtility::cmpIP($candidate, $securityNagiosServerList) === true) {
+                                return true;
+                            }
                         }
                     }
                 }
