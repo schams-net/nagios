@@ -137,7 +137,6 @@ class NagiosController
         $this->server = $this->objectManager->get(Server::class);
 
         /** @var $typo3instance SchamsNet\Nagios\Checks\Typo3 */
-         */
         $this->typo3instance = $this->objectManager->get(Typo3::class);
 
         /** @var $extensions SchamsNet\Nagios\Checks\Extensions */
