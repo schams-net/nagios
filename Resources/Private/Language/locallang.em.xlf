@@ -18,6 +18,9 @@
 			<trans-unit id="feature_deprecation_log">
 				<source>Deprecation Log:Include status of deprecation log in output</source>
 			</trans-unit>
+			<trans-unit id="feature_database_details">
+				<source>Database Details:Include database details such as host and database name in output</source>
+			</trans-unit>
 			<trans-unit id="feature_application_context">
 				<source>Application Context:Include application context (e.g. production or development)</source>
 			</trans-unit>

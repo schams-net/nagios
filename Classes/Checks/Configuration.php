@@ -103,4 +103,27 @@ class Configuration
         // it is impossible to reach this point
         return 'unknown';
     }
+
+    /**
+     * Returns database details such as host and database name
+     * (username and password are classified sensitive data and not included in the output)
+     *
+     * @access public
+     * @param array Values to be extracted from the configuration (default: 'host', 'database').
+     * @return array Database details as an associated array.
+     */
+    public function getDatabaseDetails($values = ['host', 'database'])
+    {
+        if (is_array($values) && count($values) > 0) {
+            $values = array_flip($values);
+            foreach ($values as $key => $value) {
+                if (isset($GLOBALS['TYPO3_CONF_VARS']['DB'][$key])) {
+                    $values[$key] = 'DB' . strtoupper($key) . ':' . trim($GLOBALS['TYPO3_CONF_VARS']['DB'][$key]);
+                } else {
+                    unset($values[$key]);
+                }
+            }
+        }
+        return $values;
+    }
 }

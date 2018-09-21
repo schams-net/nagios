@@ -50,6 +50,14 @@ class NagiosController
     const KEY_VERSION = 'version';
 
     /**
+     * Default keywords included in database details
+     *
+     * @access private
+     * @var array
+     */
+    private $keywordsIncludedInDatabaseDetails = ['host', 'database'];
+
+    /**
      * Extension key
      *
      * @access private
@@ -113,7 +121,7 @@ class NagiosController
      */
     public function __construct()
     {
-        // retrieve extension configuration data
+        // Retrieve extension configuration data
         $this->extensionConfiguration = array_merge(
             $this->initExtensionConfiguration(),
             $this->getExtensionConfiguration()
@@ -167,7 +175,7 @@ class NagiosController
      */
     public function execute(ServerRequestInterface $request, ResponseInterface $response)
     {
-        $data = array();
+        $data = [];
 
         // Proxy servers are *NOT* taken into account by default when checking client access, but if
         // extension security exception has been explicitly confirmed (securityProxyHeaders = 1),
@@ -186,7 +194,12 @@ class NagiosController
         }
 
         // ...
-        if ($this->accessManager->isValidNagiosServer($this->extensionConfiguration['securityNagiosServerList'], $takeProxyServerIntoAccount) === true) {
+        $isValidNagiosServer = $this->accessManager->isValidNagiosServer(
+            $this->extensionConfiguration['securityNagiosServerList'],
+            $takeProxyServerIntoAccount
+        );
+
+        if ($isValidNagiosServer === true) {
             if ($this->extensionConfiguration['featureExtensionList'] != 0) {
                 if ($this->extensionConfiguration['featureLoadedExtensionsOnly'] != 0) {
                     $extensionList = $this->extensions->getInstalledExtensions($objectManager);
@@ -207,11 +220,13 @@ class NagiosController
             }
 
             if ($this->extensionConfiguration['featureApplicationContext'] != 0) {
-                $data[] = self::KEY_APPLICATION_CONTEXT . ':' . strtolower($this->configuration->getApplicationContext());
+                $data[] = self::KEY_APPLICATION_CONTEXT . ':' .
+                    strtolower($this->configuration->getApplicationContext());
             }
 
             if ($this->extensionConfiguration['featureSitename'] != 0) {
-                $data[] = self::KEY_SITENAME . ':' . urlencode(trim(preg_replace('/[^a-zA-Z0-9\-\. ]/', '', $this->configuration->getSiteName())));
+                $data[] = self::KEY_SITENAME . ':' .
+                    urlencode(trim(preg_replace('/[^a-zA-Z0-9\-\. ]/', '', $this->configuration->getSiteName())));
             }
 
             if ($this->extensionConfiguration['featureServername'] != 0) {
@@ -220,6 +235,12 @@ class NagiosController
 
             if ($this->extensionConfiguration['featureDeprecationLog'] != 0) {
                 $data[] = self::KEY_DEPRECATION_LOG_STATUS . ':' . $this->configuration->getDeprecationLogStatus();
+            }
+            if ($this->extensionConfiguration['featureDatabaseDetails'] != 0) {
+                $databaseDetails = $this->configuration->getDatabaseDetails($this->keywordsIncludedInDatabaseDetails);
+                if (is_array($databaseDetails) && count($databaseDetails) > 0) {
+                    $data[] = implode(PHP_EOL, $databaseDetails);
+                }
             }
 
             if ($this->extensionConfiguration['featureTimestamp'] != 0) {
@@ -265,7 +286,7 @@ class NagiosController
                 return $extensionConfiguration;
             }
         }
-        return array();
+        return [];
     }
 
     /**
@@ -276,13 +297,14 @@ class NagiosController
      */
     private function initExtensionConfiguration()
     {
-        return array(
+        return [
             'featureTYPO3Version' => true,
             'featurePHPVersion' => true,
             'featureExtensionList' => true,
             'featureActivatedExtensionsOnly' => false,
             'featureApplicationContext' => true,
             'featureDeprecationLog' => true,
+            'featureDatabaseDetails' => false,
             'featureTimestamp' => true,
             'featureCheckDiskUsage' => false,
             'featureSitename' => false,
@@ -290,6 +312,6 @@ class NagiosController
             'securityNagiosServerList' => '127.0.0.1',
             'securitySupressHeader' => false,
             'securityProxyHeaders' => false,
-        );
+        ];
     }
 }

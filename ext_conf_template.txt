@@ -13,6 +13,9 @@ featureLoadedExtensionsOnly = 0
 # cat=features/enable; type=boolean; label=LLL:EXT:nagios/Resources/Private/Language/locallang.em.xlf:feature_deprecation_log
 featureDeprecationLog = 1
 
+# cat=features/enable; type=boolean; label=LLL:EXT:nagios/Resources/Private/Language/locallang.em.xlf:feature_database_details
+featureDatabaseDetails = 0
+
 # cat=features/enable; type=boolean; label=LLL:EXT:nagios/Resources/Private/Language/locallang.em.xlf:feature_application_context
 featureApplicationContext = 1
 
