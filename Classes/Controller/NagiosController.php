@@ -127,50 +127,32 @@ class NagiosController
             $this->getExtensionConfiguration()
         );
 
-        /**
-         * Object Manager
-         * @var $objectManager ObjectManager
-         */
+        /** @var $objectManager TYPO3\CMS\Extbase\Object\ObjectManager */
         $this->objectManager = GeneralUtility::makeInstance(ObjectManager::class);
 
-        /**
-         * Access Manager
-         * @var $accessManager AccessManager
-         */
+        /** @var $accessManager SchamsNet\Nagios\Access\AccessManager */
         $this->accessManager = GeneralUtility::makeInstance(AccessManager::class);
 
-        /**
-         * Server object
-         * @var $server Server
-         */
+        /** @var $server SchamsNet\Nagios\Checks\Server */
         $this->server = $this->objectManager->get(Server::class);
 
-        /**
-         * TYPO3 instance object
-         * @var $typo3instance Typo3
+        /** @var $typo3instance SchamsNet\Nagios\Checks\Typo3 */
          */
         $this->typo3instance = $this->objectManager->get(Typo3::class);
 
-        /**
-         * Extension object
-         * @var $extensions Extensions
-         */
+        /** @var $extensions SchamsNet\Nagios\Checks\Extensions */
         $this->extensions = $this->objectManager->get(Extensions::class);
 
-        /**
-         * Configuration object
-         * @var $configuration Configuration
-         */
+        /** @var $configuration  SchamsNet\Nagios\Checks\Configuration */
         $this->configuration = $this->objectManager->get(Configuration::class);
     }
 
     /**
      * Dispatcher method
      *
-     * @access  public
-     * @param   ServerRequestInterface  $request server request interface
-     * @param   ResponseInterface       $response response
-     *
+     * @access public
+     * @param ServerRequestInterface Server request interface
+     * @param ResponseInterface Response
      * @return  ResponseInterface
      */
     public function execute(ServerRequestInterface $request, ResponseInterface $response)
@@ -269,8 +251,8 @@ class NagiosController
     /**
      * Returns extension configuration (as configured in TYPO3 CMS Extension Manager)
      *
-     * @access  private
-     * @return  array       Extension configuration (key: keyword, value: value)
+     * @access private
+     * @return array Extension configuration (key: keyword, value: value)
      */
     private function getExtensionConfiguration()
     {
@@ -292,8 +274,8 @@ class NagiosController
     /**
      * Initialises extension configuration array
      *
-     * @access  private
-     * @return  array       Extension configuration array
+     * @access private
+     * @return array Extension configuration array
      */
     private function initExtensionConfiguration()
     {

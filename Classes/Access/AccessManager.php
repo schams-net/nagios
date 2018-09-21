@@ -29,35 +29,35 @@ class AccessManager
      * List of valid proxy/cache/load balancer HTTP headers
      * (state values in upper case only!)
      *
-     * @var     array
-     * @access  private
+     * @access private
+     * @var array
      */
-    private $validProxyHeaders = array('X_REAL_IP', 'X_FORWARDED_FOR');
+    private $validProxyHeaders = ['X_REAL_IP', 'X_FORWARDED_FOR'];
 
     /**
      * List of invalid IP addresses
      *
-     * @var     array
-     * @access  private
+     * @access private
+     * @var array
      */
-    private $invalidIpAddresses = array('*.*.*.*', '0.0.0.0');
+    private $invalidIpAddresses = ['*.*.*.*', '0.0.0.0'];
 
     /**
      * Returns true if list of valid Nagios servers contains the IP address of the requesting server (remote address).
      * In other words: method to check if Nagios server is allowed to retrieve information from TYPO3 CMS instance.
      * Wildcards can be used, e.g. 123.45.*.*
      *
-     * @access  public
-     * @param   string      $securityNagiosServerList comma-separated list of IP addresses of valid Nagios servers
-     * @param   string      $takeProxyServerIntoAccount controls, if additional HTTP headers should be checked (default: false)
-     * @return  bool        true if valid remote server, false if access denied
+     * @access public
+     * @param string Comma-separated list of IP addresses of valid Nagios servers
+     * @param string Controls, if additional HTTP headers should be checked (default: false)
+     * @return bool Returns true, if valid remote server, false if access denied
      */
     public function isValidNagiosServer($securityNagiosServerList = null, $takeProxyServerIntoAccount = false)
     {
         if (isset($securityNagiosServerList)
             && !empty($securityNagiosServerList)
             && is_string($securityNagiosServerList)) {
-            // make sure, extension configuration only contains valid entries
+            // Make sure, extension configuration only contains valid entries
             // and hostnames are resolved to IP addresses
             $securityNagiosServerList = $this->resolveHostnamesInList($securityNagiosServerList);
 
@@ -66,7 +66,7 @@ class AccessManager
                 return true;
             }
 
-            // check if HTTP headers exist, which are typical for a proxy/cache/load balancer.
+            // Check if HTTP headers exist, which are typical for a proxy/cache/load balancer.
             // Note: PHP internal functions such as apache_request_headers() or getenv() exist
             // but the following code is safer.
             // TYPO3's internal GeneralUtility::getIndpEnv() only supports some specific HTTP
@@ -75,10 +75,10 @@ class AccessManager
                 foreach ($_SERVER as $httpHeaderKey => $httpHeaderValue) {
                     $httpHeaderKey = preg_replace('/^HTTP_/', '', trim(strtoupper($httpHeaderKey)));
                     if (is_string($httpHeaderKey) && !empty($httpHeaderKey)
-                    && in_array($httpHeaderKey, $this->validProxyHeaders)
-                    && is_string($httpHeaderValue) && !empty($httpHeaderValue) ) {
-
-                        // allow for comma-separated list of multiple IP addresses,
+                        && in_array($httpHeaderKey, $this->validProxyHeaders)
+                        && is_string($httpHeaderValue) && !empty($httpHeaderValue)
+                    ) {
+                        // Allow for comma-separated list of multiple IP addresses,
                         // for example: "123.10.10.10, 123.10.10.20"
                         $candidates = explode(',', $httpHeaderValue);
                         $candidates = array_map('trim', $candidates);
@@ -93,11 +93,11 @@ class AccessManager
                 }
             }
 
-            // access denied
+            // Access denied
             return false;
         }
 
-        // extension configuration does not restrict remote Nagios servers
+        // Extension configuration does not restrict remote Nagios servers
         // (same as using "*" as configuration value) - this is a security risk!
         return false;
     }
@@ -105,22 +105,22 @@ class AccessManager
     /**
      * Returns comma-separated list of IP addresses, with hostnames resolved to IP addresses
      *
-     * @access  public
-     * @param   string  $list comma-separated list of IP addresses and hostnames (wildcard allowed)
-     * @return  string  Comma-separated list of IP addresses (wildcard allowed)
+     * @access public
+     * @param string Comma-separated list of IP addresses and hostnames (wildcard allowed)
+     * @return string Comma-separated list of IP addresses (wildcard allowed)
      */
     public function resolveHostnamesInList($list)
     {
-        $resolvedList = array();
+        $resolvedList = [];
         $list = GeneralUtility::trimExplode(',', $list, true);
         foreach ($list as $item) {
             if (GeneralUtility::validIP(str_replace('*', '0', $item))) {
                 if (!in_array($item, $this->invalidIpAddresses)) {
-                    // item is a valid IP address
+                    // Item is a valid IP address
                     $resolvedList[] = $item;
                 }
             } else {
-                // convert hostname to IP address
+                // Convert hostname to IP address
                 $hosts = gethostbynamel($item);
                 if ($hosts) {
                     $resolvedList = array_merge($resolvedList, $hosts);
@@ -128,10 +128,10 @@ class AccessManager
             }
         }
 
-        // remove duplicates
+        // Remove duplicates
         $resolvedList = array_unique($resolvedList);
 
-        // return comma-separated list of items
+        // Return comma-separated list of items
         return implode(',', $resolvedList);
     }
 }

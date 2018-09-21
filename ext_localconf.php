@@ -19,4 +19,5 @@
 defined('TYPO3_MODE') or die();
 
 // Register eID
-$GLOBALS['TYPO3_CONF_VARS']['FE']['eID_include']['nagios'] = \SchamsNet\Nagios\Controller\NagiosController::class . '::execute';
+$GLOBALS['TYPO3_CONF_VARS']['FE']['eID_include']['nagios'] =
+    \SchamsNet\Nagios\Controller\NagiosController::class . '::execute';

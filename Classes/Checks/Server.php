@@ -50,7 +50,7 @@ class Server
      */
     public function getServerName()
     {
-        $serverVariables = array('SERVER_NAME', 'TYPO3_HOST_ONLY', 'HTTP_HOST');
+        $serverVariables = ['SERVER_NAME', 'TYPO3_HOST_ONLY', 'HTTP_HOST'];
         foreach ($serverVariables as $variable) {
             $value = GeneralUtility::getIndpEnv($variable);
             if (is_string($value) && !empty($value)) {

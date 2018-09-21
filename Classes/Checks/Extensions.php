@@ -31,25 +31,19 @@ class Extensions
     /**
      * Returns an array with available/installed extensions
      *
-     * @access  private
-     * @param   object      $objectManager object manager
-     * @param   bool        $loadedExtensionsOnly controls, if only loaded extensions should be included (true) or all extensions (false)
-     * @return  array       List of available/installed extensions
+     * @access private
+     * @param object Object manager
+     * @param bool Controls, if only loaded extensions should be included (true) or all extensions (false)
+     * @return array List of available/installed extensions
      */
     public function getAvailableExtensions($objectManager, $loadedExtensionsOnly = false)
     {
-        $installedExtensions = array();
+        $installedExtensions = [];
 
-        /**
-         * Object Manager
-         * @var $objectManager ObjectManager
-         */
+        /** @var $objectManager TYPO3\CMS\Extbase\Object\ObjectManager */
         $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
 
-        /**
-         * Extension list utility object
-         * @var $extensionListUtility ListUtility
-         */
+        /** @var $extensionListUtility TYPO3\CMS\Extensionmanager\Utility\ListUtility */
         $extensionListUtility = $objectManager->get(ListUtility::class);
 
         $availableExtensions = $extensionListUtility->getAvailableAndInstalledExtensionsWithAdditionalInformation();
@@ -59,8 +53,13 @@ class Extensions
                 && $this->isValidExtensionKey($extensionKey) === true
                 && $this->isValidExtensionVersion($extensionDetails['version']) === true) {
                 if (strtolower($extensionDetails['type']) == 'local') {
-                    if ($loadedExtensionsOnly === false || ($loadedExtensionsOnly === true && ExtensionManagementUtility::isLoaded($extensionKey) === true)) {
-                        $installedExtensions[] = $extensionKey . '-' . NagiosController::KEY_VERSION . '-' . $extensionDetails['version'];
+                    if ($loadedExtensionsOnly === false
+                        || ($loadedExtensionsOnly === true
+                            && ExtensionManagementUtility::isLoaded($extensionKey) === true
+                        )
+                    ) {
+                        $extension = [$extensionKey, NagiosController::KEY_VERSION, $extensionDetails['version']];
+                        $installedExtensions[] = implode('-', $extension);
                     }
                 }
             }
@@ -74,9 +73,9 @@ class Extensions
     /**
      * Returns an array with installed extensions (excludes extensions, which are available but not installed)
      *
-     * @access  private
-     * @param   object      $objectManager object manager
-     * @return  array       List of installed extensions
+     * @access private
+     * @param object Object manager
+     * @return array List of installed extensions
      */
     public function getInstalledExtensions($objectManager)
     {
@@ -86,9 +85,9 @@ class Extensions
     /**
      * Returns the version of a specific extension
      *
-     * @access  private
-     * @param   string      $extensionKey extension key
-     * @return  string      Extension version, e.g. "1.2.999"
+     * @access private
+     * @param string Extension key
+     * @return string Extension version, e.g. "1.2.999"
      */
     public function getExtensionVersion($extensionKey)
     {
@@ -98,9 +97,9 @@ class Extensions
     /**
      * Checks if syntax of extension key is valid
      *
-     * @access  private
-     * @param   string      $extensionKey extension key
-     * @return  bool        true if $extensionKey is a valid, false otherwise
+     * @access private
+     * @param string Extension key
+     * @return bool Returns true, if $extensionKey is a valid, false otherwise
      */
     private function isValidExtensionKey($extensionKey)
     {
@@ -113,9 +112,9 @@ class Extensions
     /**
      * Checks if syntax of extension version is valid
      *
-     * @access  private
-     * @param   string      $version version such as "1.2.999"
-     * @return  bool        true if $version is a valid extension version, false otherwise
+     * @access private
+     * @param string Version such as "1.2.999"
+     * @return bool Returns true, if $version is a valid extension version, false otherwise
      */
     private function isValidExtensionVersion($version = null)
     {
