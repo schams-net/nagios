@@ -1,5 +1,3 @@
-﻿
-
 .. ==================================================
 .. FOR YOUR INFORMATION
 .. --------------------------------------------------
@@ -19,7 +17,7 @@
 Restrict Access by Remote IP Address
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The extension configuration of the TYPO3 Nagios® Extension contains an input field that holds a comma-separated list of IP addresses and/or fully qualified hostnames of all Nagios® servers which may retrieve information about the TYPO3 instance.
+The extension configuration of the TYPO3 Nagios® extension contains an input field that holds a comma-separated list of IP addresses and/or fully qualified hostnames of all Nagios® servers which may retrieve information about the TYPO3 instance.
 
 **Comma-separated list of IP addresses**
 

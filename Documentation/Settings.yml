@@ -4,7 +4,7 @@
 
 ---
 conf.py:
-  copyright: 2010-2017
+  copyright: 2010-2018
   project: Nagios
   version: 2
   release: 1.1
@@ -14,7 +14,7 @@ conf.py:
     preamble: \usepackage{typo3}
   intersphinx_mapping:
     t3tsref:
-    - http://docs.typo3.org/typo3cms/TyposcriptReference/
+    - https://docs.typo3.org/typo3cms/TyposcriptReference/
     - null
   extensions:
     - sphinx.ext.intersphinx

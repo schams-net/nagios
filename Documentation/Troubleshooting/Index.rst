@@ -1,5 +1,3 @@
-﻿
-
 .. ==================================================
 .. FOR YOUR INFORMATION
 .. --------------------------------------------------
@@ -18,9 +16,7 @@
 Troubleshooting
 ---------------
 
-This section aims to help pinpointing and solving typical problems.
-
-If you should stumble across a problem that could not being solved by following the instructions and is not covered in this section, feel free to contact me! I am always happy to update the documentation and/or update/fix the software in order to address issues.
+This section aims to help locating and solving typical problems. If you should stumble across a problem that could not being solved by following the instructions and is not covered in the manual, feel free to contact me. I am always happy to update the documentation and/or update/fix the software in order to address issues.
 
 
 The Nagios® server shows nothing: no error, no warning, no “OK”

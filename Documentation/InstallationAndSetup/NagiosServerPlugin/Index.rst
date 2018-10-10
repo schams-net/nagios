@@ -1,5 +1,3 @@
-﻿
-
 .. ==================================================
 .. FOR YOUR INFORMATION
 .. --------------------------------------------------
@@ -23,15 +21,13 @@ Nagios Server Plugin Configuration
 Prerequisites
 """""""""""""
 
-Install the TYPO3 extension on the TYPO3 instance which should be monitored.
-
-At the Nagios® server side, install Nagios® `as documented <https://www.nagios.org/documentation/>`_. The following sections assume Nagios® is fully operational, configured and tested. We also assume that all Nagios® plugins are located in: ``/usr/local/nagios/libexec/``
+Install the TYPO3 extension on the TYPO3 instance which should be monitored. At the Nagios® server side, install Nagios® `as documented <https://www.nagios.org/documentation/>`_. The following sections assume Nagios® is fully operational, configured and tested. We also assume that all Nagios® plugins are located in: ``/usr/local/nagios/libexec/``
 
 
 Download
 """"""""
 
-Download the TYPO3 CMS check plugin for Nagios® from the official `Nagios® Exchange portal <https://exchange.nagios.org/>`_ (search for "TYPO3"). The file name is typically ``nagios-check_typo3-1.0.0.3.tar.gz`` (for version 1.0.0.3).
+Download the TYPO3 check plugin for Nagios® from the official `Nagios® Exchange portal <https://exchange.nagios.org/>`_ (search for "TYPO3"). The file name is typically ``nagios-check_typo3-1.0.0.4.tar.gz`` (for version 1.0.0.4).
 
 
 Plugin Installation

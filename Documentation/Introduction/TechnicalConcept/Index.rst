@@ -27,9 +27,9 @@ The following illustration shows the technical concept of a typical monitoring s
    Illustration 2: Technical concept
 
 
-Simplified, the Nagios® core executes its plugin ``check_typo3.sh`` in a configured time interval. The plugin reads the configuration (``check_typo3.cfg``) and requests the TYPO3 server via HTTP. The request includes a unique eID (eID=nagios) and (optionally) some further parameters.
+Simplified, the Nagios® core executes its plugin ``check_typo3.sh`` in a configured time interval. The plugin reads the configuration (``check_typo3.cfg``) and requests the TYPO3 server via HTTP/HTTPS. The request includes a unique eID (``eID=nagios``) and (optionally) further parameters.
 
-TYPO3 receives the request and executes the Nagios® Extension which checks if the requesting server is allowed to access the data. If so, the extension gathers some information about the TYPO3 instance (all information is configurable in the TYPO3 backend) and shows it in a propriety format (text/plain).
+TYPO3 receives the request and executes the Nagios® extension which checks if the requesting server is allowed to access the data. If so, the extension gathers information about the TYPO3 instance (all information is configurable in the TYPO3 backend) and shows it in a propriety format (text/plain).
 
 The Nagios® plugin reads the response, analyzes the data and checks the information against its configuration. According to the configuration, one of the following states is reported back to the Nagios® Core (in addition to a meaningful condition description):
 
@@ -41,6 +41,4 @@ The Nagios® plugin reads the response, analyzes the data and checks the informa
 
 - UNKNOWN
 
-Finally, the Nagios® Core reacts appropriately to this states and may notify system administrators (for example by sending an email or a SMS text message).
-
-Please note that the TYPO3 Nagios® Extension is only **one** component of the system.
+Finally, the Nagios® Core reacts appropriately to this states and may notify system administrators. This depends on the Nagios configuraiton and could be for example an email, a text message to a mobile phone, a message to a team collaboration platform such as `Slack <https://slack.com>`_, etc.
