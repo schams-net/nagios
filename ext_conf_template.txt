@@ -1,0 +1,38 @@
+# cat=features/enable; type=boolean; label=LLL:EXT:nagios/Resources/Private/Language/locallang.em.xlf:feature_typo3_version
+featureTypo3Version = 1
+
+# cat=features/enable; type=boolean; label=LLL:EXT:nagios/Resources/Private/Language/locallang.em.xlf:feature_php_version
+featurePhpVersion = 1
+
+# cat=features/enable; type=boolean; label=LLL:EXT:nagios/Resources/Private/Language/locallang.em.xlf:feature_extensionlist
+featureExtensionList = 1
+
+# cat=features/enable; type=boolean; label=LLL:EXT:nagios/Resources/Private/Language/locallang.em.xlf:feature_activated_extensions_only
+featureLoadedExtensionsOnly = 0
+
+# cat=features/enable; type=boolean; label=LLL:EXT:nagios/Resources/Private/Language/locallang.em.xlf:feature_deprecation_log
+featureDeprecationLog = 1
+
+# cat=features/enable; type=boolean; label=LLL:EXT:nagios/Resources/Private/Language/locallang.em.xlf:feature_database_details
+featureDatabaseDetails = 0
+
+# cat=features/enable; type=boolean; label=LLL:EXT:nagios/Resources/Private/Language/locallang.em.xlf:feature_application_context
+featureApplicationContext = 1
+
+# cat=features/enable; type=boolean; label=LLL:EXT:nagios/Resources/Private/Language/locallang.em.xlf:feature_timestamp
+featureTimestamp = 1
+
+# cat=features/enable; type=boolean; label=LLL:EXT:nagios/Resources/Private/Language/locallang.em.xlf:feature_sitename
+featureSitename = 0
+
+# cat=features/enable; type=boolean; label=LLL:EXT:nagios/Resources/Private/Language/locallang.em.xlf:feature_servername
+featureServername = 0
+
+# cat=security/enable; type=boolean; label=LLL:EXT:nagios/Resources/Private/Language/locallang.em.xlf:security_supress_header
+securitySupressHeader = 0
+
+# cat=security/enable; type=string; label=LLL:EXT:nagios/Resources/Private/Language/locallang.em.xlf:security_nagios_serverlist
+securityNagiosServerList = 127.0.0.1
+
+# cat=security/enable; type=boolean; label=LLL:EXT:nagios/Resources/Private/Language/locallang.em.xlf:security_proxy_headers
+securityProxyHeaders = 0
