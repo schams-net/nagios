@@ -23,6 +23,7 @@ use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use TYPO3\CMS\Core\Exception;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use SchamsNet\Nagios\Controller\NagiosController;
 
 /**
  * ...
@@ -49,6 +50,8 @@ class NagiosMiddleware implements MiddlewareInterface
             return $handler->handle($request);
         }
 
-        return $handler->handle($request);
+        $nagiosController = GeneralUtility::makeInstance(NagiosController::class);
+        $nagiosController->setServerRequest($request);
+        return $nagiosController->execute($response);
     }
 }
