@@ -26,7 +26,7 @@ use SchamsNet\Nagios\Utility\AccessUtility;
 
 use SchamsNet\Nagios\Check\ServerCheck;
 use SchamsNet\Nagios\Check\Typo3Check;
-//use SchamsNet\Nagios\Checks\Configuration;
+use SchamsNet\Nagios\Check\ConfigurationCheck;
 use SchamsNet\Nagios\Check\ExtensionCheck;
 
 /**
@@ -44,18 +44,8 @@ class NagiosController
     const KEY_SERVERNAME = 'SERVERNAME';
     const KEY_APPLICATION_CONTEXT = 'APPLICATIONCONTEXT';
     const KEY_TIMESTAMP = 'TIMESTAMP';
-    const KEY_DEPRECATION_LOG_STATUS = 'DEPRECATIONLOG';
-    const KEY_DISKUSAGE = 'DISKUSAGE';
     const KEY_MESSAGE = 'MESSAGE';
     const KEY_VERSION = 'version';
-
-    /**
-     * Default keywords included in database details
-     *
-     * @access private
-     * @var array
-     */
-    private $keywordsIncludedInDatabaseDetails = ['host', 'database'];
 
     /**
      * Extension key
@@ -112,10 +102,10 @@ class NagiosController
     private $extensions = null;
 
     /**
-     * Configuration object (see: SchamsNet\Nagios\Checks\Configuration.php)
+     * Configuration details
      *
      * @access private
-     * @var object
+     * @var ConfigurationCheck
      */
     private $configuration = null;
 
@@ -142,10 +132,8 @@ class NagiosController
         /** @var $extensions ExtensionCheck */
         $this->extensions = $this->objectManager->get(ExtensionCheck::class);
 
-        /** @var $configuration  SchamsNet\Nagios\Checks\Configuration */
-/*
-        $this->configuration = $this->objectManager->get(Configuration::class);
-*/
+        /** @var $configuration ConfigurationCheck */
+        $this->configuration = $this->objectManager->get(ConfigurationCheck::class);
     }
 
     /**
@@ -198,6 +186,16 @@ class NagiosController
             if ($this->extensionConfiguration->get($this->extensionKey, 'featureTypo3Version') != 0) {
                 $data[] = self::KEY_TYPO3 . ':' . self::KEY_VERSION . '-' . $this->typo3instance->getTypo3Version();
             }
+            // Get application context
+            if ($this->extensionConfiguration->get($this->extensionKey, 'featureApplicationContext') != 0) {
+                $data[] = self::KEY_APPLICATION_CONTEXT . ':' .
+                    strtolower($this->configuration->getApplicationContext());
+            }
+            // Get site name as configured
+            if ($this->extensionConfiguration->get($this->extensionKey, 'featureSitename') != 0) {
+                $data[] = self::KEY_SITENAME . ':' .
+                    urlencode(trim(preg_replace('/[^a-zA-Z0-9\-\. ]/', '', $this->configuration->getSiteName())));
+            }
             // Get PHP version number as major-minor-release value
             if ($this->extensionConfiguration->get($this->extensionKey, 'featurePhpVersion') != 0) {
                 $data[] = self::KEY_PHP . ':' . self::KEY_VERSION . '-' . $this->server->getPhpVersion();
@@ -217,16 +215,6 @@ class NagiosController
 
 /*
         if ($isValidNagiosServer === true) {
-            if ($this->extensionConfiguration['featureApplicationContext'] != 0) {
-                $data[] = self::KEY_APPLICATION_CONTEXT . ':' .
-                    strtolower($this->configuration->getApplicationContext());
-            }
-
-            if ($this->extensionConfiguration['featureSitename'] != 0) {
-                $data[] = self::KEY_SITENAME . ':' .
-                    urlencode(trim(preg_replace('/[^a-zA-Z0-9\-\. ]/', '', $this->configuration->getSiteName())));
-            }
-
             if ($this->extensionConfiguration['featureDeprecationLog'] != 0) {
                 $data[] = self::KEY_DEPRECATION_LOG_STATUS . ':' . $this->configuration->getDeprecationLogStatus();
             }
