@@ -56,7 +56,7 @@ class ExtensionCheck
      * @param bool Controls, if only loaded extensions should be included (true) or all extensions (false)
      * @return array List of available/installed extensions
      */
-    public function getAvailableExtensions($loadedExtensionsOnly = false)
+    public function getAvailableExtensions($loadedExtensionsOnly = false): array
     {
         $installedExtensions = [];
 
@@ -94,7 +94,7 @@ class ExtensionCheck
      * @param object Object manager
      * @return array List of installed extensions
      */
-    public function getInstalledExtensions()
+    public function getInstalledExtensions(): array
     {
         return $this->getAvailableExtensions(true);
     }
@@ -106,7 +106,7 @@ class ExtensionCheck
      * @param string Extension key
      * @return string Extension version, e.g. "1.2.999"
      */
-    public function getExtensionVersion($extensionKey)
+    public function getExtensionVersion($extensionKey): string
     {
         return ExtensionManagementUtility::getExtensionVersion($extensionKey);
     }
@@ -118,7 +118,7 @@ class ExtensionCheck
      * @param string Extension key
      * @return bool Returns true, if $extensionKey is a valid, false otherwise
      */
-    private function isValidExtensionKey($extensionKey)
+    private function isValidExtensionKey($extensionKey): bool
     {
         if (isset($extensionKey) && is_string($extensionKey) && preg_match('/^[a-z0-9_]{3,}$/', $extensionKey)) {
             return true;
@@ -133,7 +133,7 @@ class ExtensionCheck
      * @param string Version such as "1.2.999"
      * @return bool Returns true, if $version is a valid extension version, false otherwise
      */
-    private function isValidExtensionVersion($version = null)
+    private function isValidExtensionVersion($version = null): bool
     {
         if (is_string($version) && preg_match('/^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$/', $version)) {
             return true;
