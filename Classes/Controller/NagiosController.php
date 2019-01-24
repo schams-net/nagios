@@ -24,7 +24,7 @@ use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use SchamsNet\Nagios\Utility\AccessUtility;
 
-//use SchamsNet\Nagios\Checks\Server;
+use SchamsNet\Nagios\Check\ServerCheck;
 //use SchamsNet\Nagios\Checks\Typo3;
 //use SchamsNet\Nagios\Checks\Configuration;
 //use SchamsNet\Nagios\Checks\Extensions;
@@ -69,7 +69,7 @@ class NagiosController
      * Extension configuration
      *
      * @access private
-     * @var string // @TODO check data type
+     * @var ExtensionConfiguration
      */
     private $extensionConfiguration = null;
 
@@ -83,15 +83,15 @@ class NagiosController
      * Object Manager
      *
      * @access private
-     * @var object
+     * @var ObjectManager
      */
     private $objectManager = null;
 
     /**
-     * Server object (see: SchamsNet\Nagios\Checks\Server.php)
+     * Server checks
      *
      * @access private
-     * @var object
+     * @var ServerCheck
      */
     private $server = null;
 
@@ -133,10 +133,9 @@ class NagiosController
         /** @var $objectManager TYPO3\CMS\Extbase\Object\ObjectManager */
         $this->objectManager = GeneralUtility::makeInstance(ObjectManager::class);
 
-        /** @var $server SchamsNet\Nagios\Checks\Server */
-/*
-        $this->server = $this->objectManager->get(Server::class);
-*/
+        /** @var $server ServerCheck */
+        $this->server = $this->objectManager->get(ServerCheck::class);
+
         /** @var $typo3instance SchamsNet\Nagios\Checks\Typo3 */
 /*
         $this->typo3instance = $this->objectManager->get(Typo3::class);
@@ -186,7 +185,18 @@ class NagiosController
         );
 
         if ($isValidClient === true) {
-            $data[] = 'valid';
+            // Get PHP version number as major-minor-release value
+            if ($this->extensionConfiguration->get($this->extensionKey, 'featurePhpVersion') != 0) {
+                $data[] = self::KEY_PHP . ':' . self::KEY_VERSION . '-' . $this->server->getPhpVersion();
+            }
+            // Get server name (as configured in web server configuration) or HTTP HOST name
+            if ($this->extensionConfiguration->get($this->extensionKey, 'featureServername') != 0) {
+                $data[] = self::KEY_SERVERNAME . ':' . urlencode($this->server->getServerName());
+            }
+            // Get server timestamp and timezone
+            if ($this->extensionConfiguration->get($this->extensionKey, 'featureTimestamp') != 0) {
+                $data[] = self::KEY_TIMESTAMP . ':' . $this->server->getTimeStamp();
+            }
         } else {
             $data[] = '# ACCESS DENIED';
             $data[] = self::KEY_MESSAGE . ':access denied';
@@ -205,11 +215,7 @@ class NagiosController
                 }
             }
 
-            if ($this->extensionConfiguration['featurePHPVersion'] != 0) {
-                $data[] = self::KEY_PHP . ':' . self::KEY_VERSION . '-' . $this->server->getPhpVersion();
-            }
-
-            if ($this->extensionConfiguration['featureTYPO3Version'] != 0) {
+            if ($this->extensionConfiguration['featureTypo3Version'] != 0) {
                 $data[] = self::KEY_TYPO3 . ':' . self::KEY_VERSION . '-' . $this->typo3instance->getTypo3Version();
             }
 
@@ -223,10 +229,6 @@ class NagiosController
                     urlencode(trim(preg_replace('/[^a-zA-Z0-9\-\. ]/', '', $this->configuration->getSiteName())));
             }
 
-            if ($this->extensionConfiguration['featureServername'] != 0) {
-                $data[] = self::KEY_SERVERNAME . ':' . urlencode($this->server->getServerName());
-            }
-
             if ($this->extensionConfiguration['featureDeprecationLog'] != 0) {
                 $data[] = self::KEY_DEPRECATION_LOG_STATUS . ':' . $this->configuration->getDeprecationLogStatus();
             }
@@ -235,14 +237,6 @@ class NagiosController
                 if (is_array($databaseDetails) && count($databaseDetails) > 0) {
                     $data[] = implode(PHP_EOL, $databaseDetails);
                 }
-            }
-
-            if ($this->extensionConfiguration['featureTimestamp'] != 0) {
-                $data[] = self::KEY_TIMESTAMP . ':' . $this->server->getTimeStamp();
-            }
-
-            if ($this->extensionConfiguration['featureCheckDiskUsage'] != 0) {
-                $data[] = self::KEY_DISKUSAGE . ':' . $this->server->getDiskUsage();
             }
         } else {
             $data = array_filter($data);
