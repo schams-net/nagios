@@ -27,7 +27,7 @@ use SchamsNet\Nagios\Utility\AccessUtility;
 use SchamsNet\Nagios\Check\ServerCheck;
 //use SchamsNet\Nagios\Checks\Typo3;
 //use SchamsNet\Nagios\Checks\Configuration;
-//use SchamsNet\Nagios\Checks\Extensions;
+use SchamsNet\Nagios\Check\ExtensionCheck;
 
 /**
  * Main controller
@@ -104,10 +104,10 @@ class NagiosController
     private $typo3instance = null;
 
     /**
-     * Extension object (see: SchamsNet\Nagios\Checks\Extensions.php)
+     * Extension checks
      *
      * @access private
-     * @var object
+     * @var ExtensionCheck
      */
     private $extensions = null;
 
@@ -140,10 +140,9 @@ class NagiosController
 /*
         $this->typo3instance = $this->objectManager->get(Typo3::class);
 */
-        /** @var $extensions SchamsNet\Nagios\Checks\Extensions */
-/*
-        $this->extensions = $this->objectManager->get(Extensions::class);
-*/
+        /** @var $extensions ExtensionCheck */
+        $this->extensions = $this->objectManager->get(ExtensionCheck::class);
+
         /** @var $configuration  SchamsNet\Nagios\Checks\Configuration */
 /*
         $this->configuration = $this->objectManager->get(Configuration::class);
@@ -185,6 +184,18 @@ class NagiosController
         );
 
         if ($isValidClient === true) {
+            // Get installed/loaded extensions
+            if ($this->extensionConfiguration->get($this->extensionKey, 'featureExtensionList') != 0) {
+                if ($this->extensionConfiguration->get($this->extensionKey, 'featureLoadedExtensionsOnly') != 0) {
+                    $extensionList = $this->extensions->getInstalledExtensions();
+                } else {
+                    $extensionList = $this->extensions->getAvailableExtensions();
+                }
+                foreach ($extensionList as $extension) {
+                    $data[] .= self::KEY_EXTENSION . ':' . $extension;
+                }
+            }
+
             // Get PHP version number as major-minor-release value
             if ($this->extensionConfiguration->get($this->extensionKey, 'featurePhpVersion') != 0) {
                 $data[] = self::KEY_PHP . ':' . self::KEY_VERSION . '-' . $this->server->getPhpVersion();
@@ -204,17 +215,6 @@ class NagiosController
 
 /*
         if ($isValidNagiosServer === true) {
-            if ($this->extensionConfiguration['featureExtensionList'] != 0) {
-                if ($this->extensionConfiguration['featureLoadedExtensionsOnly'] != 0) {
-                    $extensionList = $this->extensions->getInstalledExtensions($objectManager);
-                } else {
-                    $extensionList = $this->extensions->getAvailableExtensions($objectManager);
-                }
-                foreach ($extensionList as $extension) {
-                    $data[] .= self::KEY_EXTENSION . ':' . $extension;
-                }
-            }
-
             if ($this->extensionConfiguration['featureTypo3Version'] != 0) {
                 $data[] = self::KEY_TYPO3 . ':' . self::KEY_VERSION . '-' . $this->typo3instance->getTypo3Version();
             }
