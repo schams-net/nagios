@@ -25,7 +25,7 @@ use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use SchamsNet\Nagios\Utility\AccessUtility;
 
 use SchamsNet\Nagios\Check\ServerCheck;
-//use SchamsNet\Nagios\Checks\Typo3;
+use SchamsNet\Nagios\Check\Typo3Check;
 //use SchamsNet\Nagios\Checks\Configuration;
 use SchamsNet\Nagios\Check\ExtensionCheck;
 
@@ -96,10 +96,10 @@ class NagiosController
     private $server = null;
 
     /**
-     * TYPO3 instance object (see: SchamsNet\Nagios\Checks\Typo3.php)
+     * TYPO3 instance details
      *
      * @access private
-     * @var object
+     * @var Typo3Check
      */
     private $typo3instance = null;
 
@@ -136,10 +136,9 @@ class NagiosController
         /** @var $server ServerCheck */
         $this->server = $this->objectManager->get(ServerCheck::class);
 
-        /** @var $typo3instance SchamsNet\Nagios\Checks\Typo3 */
-/*
-        $this->typo3instance = $this->objectManager->get(Typo3::class);
-*/
+        /** @var $typo3instance Typo3Check */
+        $this->typo3instance = $this->objectManager->get(Typo3Check::class);
+
         /** @var $extensions ExtensionCheck */
         $this->extensions = $this->objectManager->get(ExtensionCheck::class);
 
@@ -195,7 +194,10 @@ class NagiosController
                     $data[] .= self::KEY_EXTENSION . ':' . $extension;
                 }
             }
-
+            // Get TYPO3 version
+            if ($this->extensionConfiguration->get($this->extensionKey, 'featureTypo3Version') != 0) {
+                $data[] = self::KEY_TYPO3 . ':' . self::KEY_VERSION . '-' . $this->typo3instance->getTypo3Version();
+            }
             // Get PHP version number as major-minor-release value
             if ($this->extensionConfiguration->get($this->extensionKey, 'featurePhpVersion') != 0) {
                 $data[] = self::KEY_PHP . ':' . self::KEY_VERSION . '-' . $this->server->getPhpVersion();
@@ -215,10 +217,6 @@ class NagiosController
 
 /*
         if ($isValidNagiosServer === true) {
-            if ($this->extensionConfiguration['featureTypo3Version'] != 0) {
-                $data[] = self::KEY_TYPO3 . ':' . self::KEY_VERSION . '-' . $this->typo3instance->getTypo3Version();
-            }
-
             if ($this->extensionConfiguration['featureApplicationContext'] != 0) {
                 $data[] = self::KEY_APPLICATION_CONTEXT . ':' .
                     strtolower($this->configuration->getApplicationContext());
