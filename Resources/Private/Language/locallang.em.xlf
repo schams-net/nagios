@@ -33,6 +33,9 @@
 			<trans-unit id="feature_servername">
 				<source>Server Name: Include server name or HTTP host name in output</source>
 			</trans-unit>
+			<trans-unit id="security_expected_uri">
+				<source>URI:URI to access the details of the TYPO3 instance (only letters, numbers and slashes, for example: /nagios)</source>
+			</trans-unit>
 			<trans-unit id="security_supress_header">
 				<source>Supress Header:Supress header line (TYPO3 Nagios(R) Extension and version) in output</source>
 			</trans-unit>

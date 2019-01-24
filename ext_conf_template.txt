@@ -28,6 +28,9 @@ featureSitename = 0
 # cat=features/enable; type=boolean; label=LLL:EXT:nagios/Resources/Private/Language/locallang.em.xlf:feature_servername
 featureServername = 0
 
+# cat=security/enable; type=string; label=LLL:EXT:nagios/Resources/Private/Language/locallang.em.xlf:security_expected_uri
+expectedUri = /nagios
+
 # cat=security/enable; type=boolean; label=LLL:EXT:nagios/Resources/Private/Language/locallang.em.xlf:security_supress_header
 securitySupressHeader = 0
 
