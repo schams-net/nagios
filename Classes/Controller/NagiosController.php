@@ -157,8 +157,7 @@ class NagiosController
 
         // Send header if not configured as suppressed
         if ($this->extensionConfiguration->get($this->extensionKey, 'securitySupressHeader') != 1) {
-//            $version = $this->extensions->getExtensionVersion($this->extensionKey);
-            $version = '3.0.0'; // @TODO determine version of EXT:nagios
+            $version = $this->extensions->getExtensionVersion($this->extensionKey);
             $data[] = '# Nagios TYPO3 Monitoring Version ' . $version . ' - https://schams.net/nagios';
             $data[] = '';
         }
