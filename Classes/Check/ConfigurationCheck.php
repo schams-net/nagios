@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 namespace SchamsNet\Nagios\Check;
 
 /*
@@ -39,7 +40,8 @@ class ConfigurationCheck
      */
     public function getApplicationContext(): string
     {
-        return GeneralUtility::getApplicationContext();
+        /* use TYPO3\CMS\Core\Core\ApplicationContext; */
+        return (string)GeneralUtility::getApplicationContext();
     }
 
     /**
