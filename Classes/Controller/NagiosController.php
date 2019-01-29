@@ -147,15 +147,6 @@ class NagiosController
     {
         $data = [];
 
-        // Proxy servers are *NOT* taken into account by default when checking client access, but if
-        // extension security exception has been explicitly confirmed (securityProxyHeaders = 1),
-        // HTTP headers typically passed through by proxy servers are checked in addition to
-        // $_SERVER['REMOTE_ADDR']
-        $takeProxyServerIntoAccount = false;
-        if ($this->extensionConfiguration->get($this->extensionKey, 'securityProxyHeaders') == 1) {
-            $takeProxyServerIntoAccount = true;
-        }
-
         // Send header if not configured as suppressed
         if ($this->extensionConfiguration->get($this->extensionKey, 'securitySupressHeader') != 1) {
             $version = $this->extensions->getExtensionVersion($this->extensionKey);

@@ -51,11 +51,11 @@ class AccessUtility
      * is usually a Nagios server.
      *
      * @param string Comma-separated list of IP addresses and hostnames (as configured)
-     * @param bool If set to "true", proxy servers are taken into account
+     * @param string If set to "true" (string will be casted), proxy servers are taken into account
      * @param ServerRequestInterface PSR-7 server request interface
      * @return bool Returns "true", if the requests originates from a valid client, otherwise "false"
      */
-    public static function isValidClient(string $serverList, bool $proxyServer, ServerRequestInterface $request): bool
+    public static function isValidClient(string $serverList, string $proxyServer, ServerRequestInterface $request): bool
     {
         /** @var NormalizedParams $normalizedParams */
         $normalizedParams = $request->getAttribute('normalizedParams');
@@ -73,8 +73,11 @@ class AccessUtility
                 return true;
             }
 
-            // Check if HTTP headers exist, which are typical for a proxy/cache/load balancer.
-            if ($proxyServer === true) {
+            // Proxy servers are *NOT* taken into account by default when checking client access, but if
+            // extension security exception has been explicitly confirmed (securityProxyHeaders = 1),
+            // HTTP headers typically passed through by proxy servers are checked in addition to
+            // $_SERVER['REMOTE_ADDR']
+            if ((bool)$proxyServer === true) {
                 $serverParams = $request->getServerParams();
                 foreach ($serverParams as $httpHeaderKey => $httpHeaderValue) {
                     $httpHeaderKey = preg_replace('/^HTTP_/', '', trim(strtoupper($httpHeaderKey)));
