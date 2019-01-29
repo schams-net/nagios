@@ -38,15 +38,15 @@ class NagiosController
     /**
      * Constants used as keywords in output
      */
-    const KEY_PHP = 'PHP';
-    const KEY_TYPO3 = 'TYPO3';
-    const KEY_EXTENSION = 'EXT';
-    const KEY_SITENAME = 'SITENAME';
-    const KEY_SERVERNAME = 'SERVERNAME';
-    const KEY_APPLICATION_CONTEXT = 'APPLICATIONCONTEXT';
-    const KEY_TIMESTAMP = 'TIMESTAMP';
-    const KEY_MESSAGE = 'MESSAGE';
-    const KEY_VERSION = 'version';
+    private const KEY_PHP = 'PHP';
+    private const KEY_TYPO3 = 'TYPO3';
+    private const KEY_EXTENSION = 'EXT';
+    private const KEY_SITENAME = 'SITENAME';
+    private const KEY_SERVERNAME = 'SERVERNAME';
+    private const KEY_APPLICATION_CONTEXT = 'APPLICATIONCONTEXT';
+    private const KEY_TIMESTAMP = 'TIMESTAMP';
+    private const KEY_MESSAGE = 'MESSAGE';
+    public const KEY_VERSION = 'version';
 
     /**
      * Extension key
