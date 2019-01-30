@@ -19,7 +19,7 @@ namespace SchamsNet\Nagios\Check;
  */
 
 /**
- * Class provides TYPO3 specific checks
+ * Class provides TYPO3 specific checks/details
  */
 class Typo3Check
 {
@@ -27,7 +27,7 @@ class Typo3Check
      * Returns TYPO3 version as major.minor.release[-dev] value
      *
      * @access public
-     * @return string
+     * @return string TYPO3 version
      */
     public function getTypo3Version(): string
     {

@@ -28,7 +28,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use SchamsNet\Nagios\Controller\NagiosController;
 
 /**
- * ...
+ * PSR-15 middleware for Nagios
  */
 class NagiosMiddleware implements MiddlewareInterface
 {
@@ -51,9 +51,8 @@ class NagiosMiddleware implements MiddlewareInterface
     /**
      * Dispatches the request to the corresponding typoscript_rendering configuration
      *
-     * @param ServerRequestInterface $request
-     * @param RequestHandlerInterface $handler
-     * @throws Exception
+     * @param ServerRequestInterface $request Server request interface
+     * @param RequestHandlerInterface $handler Request handler interface
      * @return ResponseInterface
      */
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
@@ -70,10 +69,10 @@ class NagiosMiddleware implements MiddlewareInterface
     }
 
     /**
-     * ...
+     * Checks if the request is for the TYPO3 Nagios extension
      *
      * @access private
-     * @param ServerRequestInterface
+     * @param ServerRequestInterface $request PSR-7 server request interface
      * @return bool
      */
     private function isNagiosRequest(ServerRequestInterface $request): bool
@@ -98,10 +97,10 @@ class NagiosMiddleware implements MiddlewareInterface
      * Sanitize string
      *
      * @access private
-     * @param string
+     * @param string $uri Uniform resource identifier (URI) to sanitize
      * @return string
      */
-    public static function sanitizeString(string $uri): string
+    private static function sanitizeString(string $uri): string
     {
         // Remove trailing slashes
         $uri = preg_replace('/\/{1,}$/', '', $uri);

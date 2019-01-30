@@ -143,7 +143,7 @@ class NagiosController
      * @access public
      * @return Response
      */
-    public function execute()
+    public function execute(): Response
     {
         $data = [];
 
@@ -204,24 +204,6 @@ class NagiosController
             $data[] = self::KEY_MESSAGE . ':access denied';
         }
 
-/*
-        if ($isValidNagiosServer === true) {
-            if ($this->extensionConfiguration['featureDeprecationLog'] != 0) {
-                $data[] = self::KEY_DEPRECATION_LOG_STATUS . ':' . $this->configuration->getDeprecationLogStatus();
-            }
-            if ($this->extensionConfiguration['featureDatabaseDetails'] != 0) {
-                $databaseDetails = $this->configuration->getDatabaseDetails($this->keywordsIncludedInDatabaseDetails);
-                if (is_array($databaseDetails) && count($databaseDetails) > 0) {
-                    $data[] = implode(PHP_EOL, $databaseDetails);
-                }
-            }
-        } else {
-            $data = array_filter($data);
-            $data[] = '# ACCESS DENIED';
-            $data[] = self::KEY_MESSAGE . ':access denied';
-        }
-*/
-
         $response = new Response();
         $response->getBody()->write(implode(PHP_EOL, $data) . PHP_EOL);
         return $response
@@ -237,37 +219,11 @@ class NagiosController
      * Set server request interface
      *
      * @access public
-     * @param ServerRequestInterface
+     * @param ServerRequestInterface $request PSR-7 server request interface
      * @return void
      */
     public function setServerRequest(ServerRequestInterface $request): void
     {
         $this->request = $request;
-    }
-
-    /**
-     * Initialises extension configuration array
-     *
-     * @access private
-     * @return array Extension configuration array
-     */
-    private function initExtensionConfiguration()
-    {
-        return [
-            'featureTYPO3Version' => true,
-            'featurePHPVersion' => true,
-            'featureExtensionList' => true,
-            'featureActivatedExtensionsOnly' => false,
-            'featureApplicationContext' => true,
-            'featureDeprecationLog' => true,
-            'featureDatabaseDetails' => false,
-            'featureTimestamp' => true,
-            'featureCheckDiskUsage' => false,
-            'featureSitename' => false,
-            'featureServername' => false,
-            'securityNagiosServerList' => '127.0.0.1',
-            'securitySupressHeader' => false,
-            'securityProxyHeaders' => false,
-        ];
     }
 }

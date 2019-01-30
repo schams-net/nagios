@@ -19,7 +19,6 @@ namespace SchamsNet\Nagios\Check;
  */
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\Utility\CommandUtility;
 
 /**
  * Class contains methods for retrieving server-related data, such as PHP version.
@@ -73,7 +72,7 @@ class ServerCheck
      * @access public
      * @return string
      */
-    public function getTimeStamp():string
+    public function getTimeStamp(): string
     {
         return date('U-T');
     }

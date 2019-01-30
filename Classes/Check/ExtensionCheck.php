@@ -53,11 +53,10 @@ class ExtensionCheck
      * Returns an array with available/installed extensions
      *
      * @access private
-     * @param object Object manager
-     * @param bool Controls, if only loaded extensions should be included (true) or all extensions (false)
+     * @param bool $loadedExtensionsOnly If set to "true", only loaded extensions are included (default: "false")
      * @return array List of available/installed extensions
      */
-    public function getAvailableExtensions($loadedExtensionsOnly = false): array
+    public function getAvailableExtensions(bool $loadedExtensionsOnly = false): array
     {
         $installedExtensions = [];
 
@@ -83,7 +82,7 @@ class ExtensionCheck
             }
         }
 
-        // sort extension list by extension name
+        // Sort extension list by extension name
         sort($installedExtensions);
         return $installedExtensions;
     }
@@ -92,7 +91,6 @@ class ExtensionCheck
      * Returns an array with installed extensions (excludes extensions, which are available but not installed)
      *
      * @access private
-     * @param object Object manager
      * @return array List of installed extensions
      */
     public function getInstalledExtensions(): array
@@ -104,10 +102,10 @@ class ExtensionCheck
      * Returns the version of a specific extension
      *
      * @access private
-     * @param string Extension key
+     * @param string $extensionKey Extension key
      * @return string Extension version, e.g. "1.2.999"
      */
-    public function getExtensionVersion($extensionKey): string
+    public function getExtensionVersion(string $extensionKey): string
     {
         return ExtensionManagementUtility::getExtensionVersion($extensionKey);
     }
@@ -116,10 +114,10 @@ class ExtensionCheck
      * Checks if syntax of extension key is valid
      *
      * @access private
-     * @param string Extension key
+     * @param string $extensionKey Extension key
      * @return bool Returns true, if $extensionKey is a valid, false otherwise
      */
-    private function isValidExtensionKey($extensionKey): bool
+    private function isValidExtensionKey(string $extensionKey): bool
     {
         if (isset($extensionKey) && is_string($extensionKey) && preg_match('/^[a-z0-9_]{3,}$/', $extensionKey)) {
             return true;
@@ -131,10 +129,10 @@ class ExtensionCheck
      * Checks if syntax of extension version is valid
      *
      * @access private
-     * @param string Version such as "1.2.999"
+     * @param string $version Version such as "1.2.999"
      * @return bool Returns true, if $version is a valid extension version, false otherwise
      */
-    private function isValidExtensionVersion($version = null): bool
+    private function isValidExtensionVersion(string $version): bool
     {
         if (is_string($version) && preg_match('/^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$/', $version)) {
             return true;

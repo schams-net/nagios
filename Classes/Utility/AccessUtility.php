@@ -50,9 +50,9 @@ class AccessUtility
      * allowed to access details of the TYPO3 instance. The "client"
      * is usually a Nagios server.
      *
-     * @param string Comma-separated list of IP addresses and hostnames (as configured)
-     * @param string If set to "true" (string will be casted), proxy servers are taken into account
-     * @param ServerRequestInterface PSR-7 server request interface
+     * @param string $serverList Comma-separated list of IP addresses and hostnames (as configured)
+     * @param string $proxyServer If set to "true" (string will be casted), proxy servers are taken into account
+     * @param ServerRequestInterface $request PSR-7 server request interface
      * @return bool Returns "true", if the requests originates from a valid client, otherwise "false"
      */
     public static function isValidClient(string $serverList, string $proxyServer, ServerRequestInterface $request): bool
@@ -107,7 +107,7 @@ class AccessUtility
      * Returns comma-separated list of IP addresses, with hostnames resolved to IP addresses
      *
      * @access public
-     * @param string Comma-separated list of IP addresses and hostnames (wildcard allowed)
+     * @param string $list Comma-separated list of IP addresses and hostnames (wildcard allowed)
      * @return string Comma-separated list of IP addresses (wildcard allowed)
      */
     public static function resolveHostnamesInList(string $list): string
