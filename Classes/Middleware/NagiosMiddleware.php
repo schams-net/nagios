@@ -64,8 +64,7 @@ class NagiosMiddleware implements MiddlewareInterface
 
         // Process request
         $nagiosController = GeneralUtility::makeInstance(NagiosController::class);
-        $nagiosController->setServerRequest($request);
-        return $nagiosController->execute($response);
+        return $nagiosController->execute($request);
     }
 
     /**

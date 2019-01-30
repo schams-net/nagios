@@ -66,12 +66,6 @@ class NagiosController
     private $extensionConfiguration = null;
 
     /**
-    * @access private
-    * @var ServerRequestInterface
-     */
-    private $request = null;
-
-    /**
      * Object Manager
      *
      * @access private
@@ -166,9 +160,10 @@ class NagiosController
      * Dispatcher method
      *
      * @access public
+     * @param ServerRequestInterface $request PSR-7 server request interface
      * @return Response
      */
-    public function execute(): Response
+    public function execute(ServerRequestInterface $request): Response
     {
         $data = [];
 
@@ -182,7 +177,7 @@ class NagiosController
         $isValidClient = AccessUtility::isValidClient(
             $this->extensionConfiguration->get($this->extensionKey, 'securityNagiosServerList'),
             $this->extensionConfiguration->get($this->extensionKey, 'securityProxyHeaders'),
-            $this->request
+            $request
         );
 
         if ($isValidClient === true) {
@@ -245,17 +240,5 @@ class NagiosController
             ->withHeader('Pragma', 'no-cache')
             ->withHeader('Content-Type', 'text/plain; charset=utf8')
             ->withHeader('X-Robots-Tag', 'noindex, nofollow');
-    }
-
-    /**
-     * Set server request interface
-     *
-     * @access public
-     * @param ServerRequestInterface $request PSR-7 server request interface
-     * @return void
-     */
-    public function setServerRequest(ServerRequestInterface $request): void
-    {
-        $this->request = $request;
     }
 }
