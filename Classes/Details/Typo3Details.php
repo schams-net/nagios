@@ -1,6 +1,6 @@
 <?php
 declare(strict_types = 1);
-namespace SchamsNet\Nagios\Check;
+namespace SchamsNet\Nagios\Details;
 
 /*
  * This file is part of the TYPO3 CMS Extension "Nagios TYPO3 Monitoring"
@@ -19,9 +19,9 @@ namespace SchamsNet\Nagios\Check;
  */
 
 /**
- * Class provides TYPO3 specific checks/details
+ * Class provides TYPO3 specific details
  */
-class Typo3Check
+class Typo3Details
 {
     /**
      * Returns TYPO3 version as major.minor.release[-dev] value

@@ -25,10 +25,10 @@ use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use SchamsNet\Nagios\Utility\AccessUtility;
 
-use SchamsNet\Nagios\Check\ServerCheck;
-use SchamsNet\Nagios\Check\Typo3Check;
-use SchamsNet\Nagios\Check\ConfigurationCheck;
-use SchamsNet\Nagios\Check\ExtensionCheck;
+use SchamsNet\Nagios\Details\ServerDetails;
+use SchamsNet\Nagios\Details\Typo3Details;
+use SchamsNet\Nagios\Details\ConfigurationDetails;
+use SchamsNet\Nagios\Details\ExtensionDetails;
 
 /**
  * Main controller
@@ -79,10 +79,10 @@ class NagiosController
     private $objectManager = null;
 
     /**
-     * Server checks
+     * Server details
      *
      * @access private
-     * @var ServerCheck
+     * @var ServerDetails
      */
     private $server = null;
 
@@ -90,15 +90,15 @@ class NagiosController
      * TYPO3 instance details
      *
      * @access private
-     * @var Typo3Check
+     * @var Typo3Details
      */
     private $typo3instance = null;
 
     /**
-     * Extension checks
+     * Extension details
      *
      * @access private
-     * @var ExtensionCheck
+     * @var ExtensionDetails
      */
     private $extensions = null;
 
@@ -106,7 +106,7 @@ class NagiosController
      * Configuration details
      *
      * @access private
-     * @var ConfigurationCheck
+     * @var ConfigurationDetails
      */
     private $configuration = null;
 
@@ -124,17 +124,17 @@ class NagiosController
         /** @var $objectManager TYPO3\CMS\Extbase\Object\ObjectManager */
         $this->objectManager = GeneralUtility::makeInstance(ObjectManager::class);
 
-        /** @var $server ServerCheck */
-        $this->server = $this->objectManager->get(ServerCheck::class);
+        /** @var $server ServerDetails */
+        $this->server = $this->objectManager->get(ServerDetails::class);
 
-        /** @var $typo3instance Typo3Check */
-        $this->typo3instance = $this->objectManager->get(Typo3Check::class);
+        /** @var $typo3instance Typo3Details */
+        $this->typo3instance = $this->objectManager->get(Typo3Details::class);
 
-        /** @var $extensions ExtensionCheck */
-        $this->extensions = $this->objectManager->get(ExtensionCheck::class);
+        /** @var $extensions ExtensionDetails */
+        $this->extensions = $this->objectManager->get(ExtensionDetails::class);
 
-        /** @var $configuration ConfigurationCheck */
-        $this->configuration = $this->objectManager->get(ConfigurationCheck::class);
+        /** @var $configuration ConfigurationDetails */
+        $this->configuration = $this->objectManager->get(ConfigurationDetails::class);
     }
 
     /**

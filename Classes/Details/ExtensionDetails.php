@@ -1,6 +1,6 @@
 <?php
 declare(strict_types = 1);
-namespace SchamsNet\Nagios\Check;
+namespace SchamsNet\Nagios\Details;
 
 /*
  * This file is part of the TYPO3 CMS Extension "Nagios TYPO3 Monitoring"
@@ -25,9 +25,9 @@ use TYPO3\CMS\Extensionmanager\Utility\ListUtility;
 use SchamsNet\Nagios\Controller\NagiosController;
 
 /**
- * Class contains methods for extension-related checks, such as extension versions.
+ * Class contains methods for extension-related details, such as extension versions.
  */
-class ExtensionCheck
+class ExtensionDetails
 {
     /**
      * Object Manager

@@ -1,6 +1,6 @@
 <?php
 declare(strict_types = 1);
-namespace SchamsNet\Nagios\Check;
+namespace SchamsNet\Nagios\Details;
 
 /*
  * This file is part of the TYPO3 CMS Extension "Nagios TYPO3 Monitoring"
@@ -25,7 +25,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * Server-related configurations usually require system administrator privileges
  * and can not be changed/adjusted by a TYPO3 integrator.
  */
-class ServerCheck
+class ServerDetails
 {
     /**
      * Returns PHP version as major-minor-release value (values such as "5.6.7-2ubuntu5.6" get cleaned up)

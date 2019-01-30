@@ -1,6 +1,6 @@
 <?php
 declare(strict_types = 1);
-namespace SchamsNet\Nagios\Check;
+namespace SchamsNet\Nagios\Details;
 
 /*
  * This file is part of the TYPO3 CMS Extension "Nagios TYPO3 Monitoring"
@@ -21,11 +21,11 @@ namespace SchamsNet\Nagios\Check;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * Class contains methods for configuration-related checks.
- * All configuration checks can be adjusted by an administrator or TYPO3 integrator.
- * They are not server- or system- or TYPO3-related.
+ * Class contains methods for configuration-related details.
+ * These details are usually adjusted by an administrator or TYPO3 integrator.
+ * They are not server, or system, or TYPO3-related.
  */
-class ConfigurationCheck
+class ConfigurationDetails
 {
     /**
      * Returns the current application context.
