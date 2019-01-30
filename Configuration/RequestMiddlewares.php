@@ -19,7 +19,7 @@ declare(strict_types = 1);
 
 return [
     'frontend' => [
-        'schamsnet/nagios/output' => [
+        'schams.net/nagios/core' => [
             'target' => \SchamsNet\Nagios\Middleware\NagiosMiddleware::class,
             'description' => 'TYPO3 Nagios Extension"',
             'after' => [
