@@ -37,10 +37,11 @@ Version  Date        Changes
                      - Dependency configuration updated
                      - Release of re-developed extension as a stable version (published at the `TYPO3 Extension Repository <http://typo3.org/extensions/repository/>`_)
 2.1.1    2017-05-04  - Allow multiple comma-separated IPv4 addresses in HTTP proxy headers, e.g. "HTTP_X_FORWARDED_FOR"
-2.2.0    2018-xx-xx  - Allow output of database details
+2.1.2    2019-07-08  - Allow output of database details
                      - Code cleanup and comply with PSR-2 coding standards
                      - composer.json file added
                      - Compatibility with TYPO3 v9 and PHP 7.2 tested
+                     - Allow requests from IPv6 addresses
                      - Documentation updated
 =======  ==========  =======================================================================
 
