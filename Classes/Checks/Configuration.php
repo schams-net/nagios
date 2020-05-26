@@ -74,7 +74,8 @@ class Configuration
             return 'unknown';
         } elseif ($GLOBALS['TYPO3_CONF_VARS']['SYS']['enableDeprecationLog'] === false
             || $GLOBALS['TYPO3_CONF_VARS']['SYS']['enableDeprecationLog'] === '0'
-            || $GLOBALS['TYPO3_CONF_VARS']['SYS']['enableDeprecationLog'] === 0) {
+            || $GLOBALS['TYPO3_CONF_VARS']['SYS']['enableDeprecationLog'] === 0
+            || $GLOBALS['TYPO3_CONF_VARS']['SYS']['enableDeprecationLog'] === '') {
             // Deprecation log is explicitly disabled in file LocalConfiguration.php
             // (Install Tool).
             return 'disabled';
