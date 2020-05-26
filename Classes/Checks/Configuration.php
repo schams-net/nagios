@@ -68,9 +68,9 @@ class Configuration
     public function getDeprecationLogStatus()
     {
         if (!isset($GLOBALS['TYPO3_CONF_VARS']['SYS']['enableDeprecationLog'])) {
-            // Deprecation log settings are NOT configured This is very unusal,
-            // because even if no setting has be configured in file LocalConfiguration.php,
-            // TYPO3 provides a default value (which is "0", disabled).
+            // Deprecation log settings are NOT configured. This is unusal, as even
+            // if no settings have been configured in file LocalConfiguration.php,
+            // TYPO3 provides a default value (which is "0" or a empty string).
             return 'unknown';
         } elseif ($GLOBALS['TYPO3_CONF_VARS']['SYS']['enableDeprecationLog'] === false
             || $GLOBALS['TYPO3_CONF_VARS']['SYS']['enableDeprecationLog'] === '0'
