@@ -52,15 +52,13 @@ class Extensions
                 && array_key_exists('version', $extensionDetails)
                 && $this->isValidExtensionKey($extensionKey) === true
                 && $this->isValidExtensionVersion($extensionDetails['version']) === true) {
-                if (strtolower($extensionDetails['type']) == 'local') {
-                    if ($loadedExtensionsOnly === false
-                        || ($loadedExtensionsOnly === true
-                            && ExtensionManagementUtility::isLoaded($extensionKey) === true
-                        )
-                    ) {
-                        $extension = [$extensionKey, NagiosController::KEY_VERSION, $extensionDetails['version']];
-                        $installedExtensions[] = implode('-', $extension);
-                    }
+                if ($loadedExtensionsOnly === false
+                    || ($loadedExtensionsOnly === true
+                        && ExtensionManagementUtility::isLoaded($extensionKey) === true
+                    )
+                ) {
+                    $extension = [$extensionKey, NagiosController::KEY_VERSION, $extensionDetails['version']];
+                    $installedExtensions[] = implode('-', $extension);
                 }
             }
         }
