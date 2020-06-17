@@ -2,7 +2,6 @@
   "name": "schams-net/nagios",
   "description": "Nagios TYPO3 Monitoring",
   "type": "typo3-cms-extension",
-  "version": "2.1.2",
   "authors": [
     {
       "name": "Michael Schams",
