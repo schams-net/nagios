@@ -43,6 +43,8 @@ Version  Date        Changes
                      - Compatibility with TYPO3 v9 and PHP 7.2 tested
                      - Allow requests from IPv6 addresses
                      - Documentation updated
+2.1.3    2020-06-17  - Allow empty `enableDeprecationLog` (TYPO3 v9)
+                     - Documentation updated
 =======  ==========  =======================================================================
 
 

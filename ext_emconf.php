@@ -22,7 +22,7 @@ $EM_CONF[$_EXTKEY] = [
         wrong PHP versions, etc. Requires a Nagios monitoring server. Detailed documentation, screenshots
         and more at: http://schams.net/nagios',
     'category' => 'misc',
-    'version' => '2.1.2',
+    'version' => '2.1.3',
     'state' => 'stable',
     'createDirs' => '',
     'clearcacheonload' => true,
