@@ -70,11 +70,12 @@ class Configuration
         if (!isset($GLOBALS['TYPO3_CONF_VARS']['SYS']['enableDeprecationLog'])) {
             // Deprecation log settings are NOT configured. This is unusal, as even
             // if no settings have been configured in file LocalConfiguration.php,
-            // TYPO3 provides a default value (which is "0" or a empty string).
+            // TYPO3 provides a default value (which is "0" or an empty string).
             return 'unknown';
         } elseif ($GLOBALS['TYPO3_CONF_VARS']['SYS']['enableDeprecationLog'] === false
             || $GLOBALS['TYPO3_CONF_VARS']['SYS']['enableDeprecationLog'] === '0'
-            || $GLOBALS['TYPO3_CONF_VARS']['SYS']['enableDeprecationLog'] === 0) {
+            || $GLOBALS['TYPO3_CONF_VARS']['SYS']['enableDeprecationLog'] === 0
+            || $GLOBALS['TYPO3_CONF_VARS']['SYS']['enableDeprecationLog'] === '') {
             // Deprecation log is explicitly disabled in file LocalConfiguration.php
             // (Install Tool).
             return 'disabled';
