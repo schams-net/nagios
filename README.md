@@ -20,7 +20,7 @@ Please see the [documentation](https://docs.typo3.org/typo3cms/extensions/nagios
 ## System Requirements
 
 * TYPO3 v7 LTS, v8 LTS or v9 LTS
-* PHP version 5.6, 7.0, 7.1 or 7.2
+* PHP version 5.6, 7.0, 7.1, 7.2 or 7.3
 
 ## License
 
