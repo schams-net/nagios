@@ -19,12 +19,12 @@ Please see the [documentation](https://docs.typo3.org/typo3cms/extensions/nagios
 
 ## System Requirements
 
-* TYPO3 v9 LTS
-* PHP version 7.2
+* TYPO3 v9 LTS or v10 LTS
+* PHP version 7.2, 7.3, or 7.4
 
 ## License
 
-(c) 2010-2019 Michael Schams (schams.net), all rights reserved
+(c) 2010-2020 Michael Schams (schams.net), all rights reserved
 
 This software free software; you can redistribute it and/or modify it under the terms of the GNU General Public License, either version 2 of the License, or any later version. For the full copyright and license information, please see the documentation that was distributed with this source code.
 
