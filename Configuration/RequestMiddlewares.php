@@ -22,9 +22,6 @@ return [
         'schams.net/nagios/core' => [
             'target' => \SchamsNet\Nagios\Middleware\NagiosMiddleware::class,
             'description' => 'TYPO3 Nagios Extension"',
-            'after' => [
-                'typo3/cms-frontend/preprocessing'
-            ],
             'before' => [
                 'typo3/cms-frontend/eid'
             ],
