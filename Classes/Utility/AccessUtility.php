@@ -86,12 +86,12 @@ class AccessUtility
                         && is_string($httpHeaderValue) && !empty($httpHeaderValue)
                     ) {
                         // Allow for comma-separated list of multiple IP addresses,
-                        // for example: "123.10.10.10, 123.10.10.20"
+                        // for example: "123.10.10.10, 123.10.10.20, 2406:aaaa:bbbb:cccc:dddd:eeee:ffff:abcd"
                         $candidates = explode(',', $httpHeaderValue);
                         $candidates = array_map('trim', $candidates);
 
                         foreach ($candidates as $candidate) {
-                            if (GeneralUtility::validIPv4($candidate)
+                            if (GeneralUtility::validIP($candidate)
                             && GeneralUtility::cmpIP($candidate, $serverList) === true) {
                                 return true;
                             }
