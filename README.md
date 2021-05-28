@@ -12,7 +12,7 @@ A comprehensive [documentation](https://github.com/schams-net/nagios/blob/releas
 
 ## Installation
 
-The TYPO3 extension “Nagios” is available as a [Composer](https://getcomposer.org/) package at [Packagist](https://packagist.org/packages/schams-net/nagios).
+The TYPO3 extension “Nagios” is available as a [Composer](https://getcomposer.org/) package from [Packagist](https://packagist.org/packages/schams-net/nagios).
 
 ```bash
 composer require schams-net/nagios
