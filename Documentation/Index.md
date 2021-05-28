@@ -18,6 +18,7 @@ This documentation relates to the [TYPO3 extension “Nagios”](https://github.
   - [Extension Configuration](AdministrationAndConfiguration/Configuration/Index.md)
   - [Configuration of Features](AdministrationAndConfiguration/Configuration/Features/Index.md)
   - [Security Options](AdministrationAndConfiguration/Configuration/Security/Index.md)
+  - [TYPO3 Behind a Proxy](AdministrationAndConfiguration/Typo3BehindAProxy/Index.md)
 - [Security Aspects](SecurityAspects/Index.md)
   - [Restrict Access by Remote IP Address](SecurityAspects/RestrictAccessByRemoteIpAddress/Index.md)
   - [TYPO3 Behind a Proxy Server](SecurityAspects/Typo3BehindAProxyServer/Index.md)
