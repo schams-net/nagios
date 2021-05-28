@@ -5,9 +5,9 @@ This open-source software is an extension for the enterprise content management 
 
 ## Documentation
 
-A comprehensive [documentation](https://github.com/schams-net/nagios/blob/release/Documentation/Index.md) is available at GitHub. It contains information about the [installation process](https://github.com/schams-net/nagios/blob/release/Documentation/InstallationAndSetup/Index.md), [system requirements](https://github.com/schams-net/nagios/blob/release/Documentation/InstallationAndSetup/Requirements/Index.md), [configuration options](https://github.com/schams-net/nagios/blob/release/Documentation/AdministrationAndConfiguration/Index.md), [security aspects](https://github.com/schams-net/nagios/blob/release/Documentation/SecurityAspects/Index.md), and more.
+A comprehensive [documentation](https://github.com/schams-net/nagios/blob/release/Documentation/) is available at GitHub. It contains information about the [installation process](https://github.com/schams-net/nagios/blob/release/Documentation/InstallationAndSetup/Index.md), [system requirements](https://github.com/schams-net/nagios/blob/release/Documentation/InstallationAndSetup/Requirements/Index.md), [configuration options](https://github.com/schams-net/nagios/blob/release/Documentation/AdministrationAndConfiguration/Index.md), [security aspects](https://github.com/schams-net/nagios/blob/release/Documentation/SecurityAspects/Index.md), and more.
 
-➤ Read more: [Documentation](https://github.com/schams-net/nagios/blob/release/Documentation/Index.md).
+➤ Read more: [Documentation](https://github.com/schams-net/nagios/blob/release/Documentation/).
 
 
 ## Installation
@@ -18,7 +18,7 @@ The TYPO3 extension “Nagios” is available as a [Composer](https://getcompose
 composer require schams-net/nagios
 ```
 
-More details and alternative installation methods can be found in the [documentation](https://github.com/schams-net/nagios/blob/release/Documentation/Index.md).
+More details and alternative installation methods can be found in the [documentation](https://github.com/schams-net/nagios/blob/release/Documentation/).
 
 
 ## Git Branches, Versions, and Compatibility
