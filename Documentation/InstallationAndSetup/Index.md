@@ -12,6 +12,10 @@ Last but not least, install and configure the [Nagios® server plugin](NagiosSer
 
 - [Introduction](../Introduction/Index.md)
 - **Installation and Setup**
+  - [System Requirements](SystemRequirements/Index.md)
+  - [Step-by-step Installation](StepByStep/Index.md)
+  - [Version Updates](VersionUpdates/Index.md)
+  - [Nagios® Server Plugin](NagiosServerPlugin/Index.md)
 - [Administration and Configuration](../AdministrationAndConfiguration/Index.md)
 - [Security Aspects](../SecurityAspects/Index.md)
 - [Extending Functionality](../ExtendingFunctionality/Index.md)

@@ -20,6 +20,10 @@ If you run your TYPO3 instance behind a proxy server, for example a load balance
 - [Introduction](../Introduction/Index.md)
 - [Installation and Setup](../InstallationAndSetup/Index.md)
 - **Administration and Configuration**
+  - [Extension Configuration](Configuration/Index.md)
+  - [Configuration of Features](Configuration/Features/Index.md)
+  - [Security Options](Configuration/Security/Index.md)
+  - [TYPO3 Behind a Proxy](Typo3BehindAProxy/Index.md)
 - [Security Aspects](../SecurityAspects/Index.md)
 - [Extending Functionality](../ExtendingFunctionality/Index.md)
 - [Troubleshooting](../Troubleshooting/Index.md)

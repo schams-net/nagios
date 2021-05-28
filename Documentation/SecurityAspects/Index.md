@@ -15,6 +15,8 @@ The extension also features strong security measures out of the box. This includ
 - [Installation and Setup](../InstallationAndSetup/Index.md)
 - [Administration and Configuration](../AdministrationAndConfiguration/Index.md)
 - **Security Aspects**
+  - [Restrict Access by Remote IP Address](RestrictAccessByRemoteIpAddress/Index.md)
+  - [TYPO3 Behind a Proxy Server](Typo3BehindAProxyServer/Index.md)
 - [Extending Functionality](../ExtendingFunctionality/Index.md)
 - [Troubleshooting](../Troubleshooting/Index.md)
 - [Support](../Support/Index.md)
