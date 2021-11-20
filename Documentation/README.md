@@ -6,7 +6,7 @@ This documentation relates to the [TYPO3 extension “Nagios”](https://github.
 ## Table of Contents
 
 - [Introduction](Introduction/Index.md)
-  - [How the extension works](Introduction/TechnicalConcept/Index.md)
+  - [How the extension works](Introduction/HowTheExtensionWorks/Index.md)
   - [Technical Concept](Introduction/TechnicalConcept/Index.md)
   - [Screenshots](Introduction/Screenshots/Index.md)
 - [Installation and Setup](InstallationAndSetup/Index.md)
