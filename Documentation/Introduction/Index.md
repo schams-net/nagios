@@ -8,7 +8,7 @@ This chapter provides details about the TYPO3 extension, [how it works](HowTheEx
 ## Chapter Overview
 
 - **Introduction**
-  - [How the extension works](TechnicalConcept/Index.md)
+  - [How the extension works](HowTheExtensionWorks/Index.md)
   - [Technical Concept](TechnicalConcept/Index.md)
   - [Screenshots](Screenshots/Index.md)
 - [Installation and Setup](../InstallationAndSetup/Index.md)
