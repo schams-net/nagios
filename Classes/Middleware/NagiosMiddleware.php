@@ -85,7 +85,7 @@ class NagiosMiddleware implements MiddlewareInterface
         $expectedUri = $this->extensionConfiguration->get($this->extensionKey, 'expectedUri');
         $expectedUri = self::sanitizeString($expectedUri);
 
-        if (preg_match('/^\/[a-zA-Z0-9\/]{3,}/', $expectedUri) && $requestUri === $expectedUri) {
+        if (preg_match('/^\/[a-zA-Z0-9\/\-\_]{3,}/', $expectedUri) && $requestUri === $expectedUri) {
             return true;
         }
 
