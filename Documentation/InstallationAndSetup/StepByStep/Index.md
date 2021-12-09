@@ -26,10 +26,10 @@ The officially recommended TYPO3 installation method is using [Composer](https:/
 composer require schams-net/nagios
 ```
 
-Composer resolves dependencies automatically and downloads the best possible version for your environment. You can also specify the desired extension version directly. The following command installs version 3.0.0 (if possible) and ensures that it remains at exactly this version when you run a `composer update` in the future:
+Composer resolves dependencies automatically and downloads the best possible version for your environment. You can also specify the desired extension version directly. The following command installs version 3.0.1 (if possible) and ensures that it remains at exactly this version when you run a `composer update` in the future:
 
 ```bash
-composer require schams-net/nagios:3.0.0
+composer require schams-net/nagios:3.0.1
 ```
 
 The fixation of a specific version is, however, not recommended. Bugfixes, security updates, and backwards-compatible new versions would not be installed. The TYPO3 extension follows [semantic versioning](https://semver.org).

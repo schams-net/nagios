@@ -16,7 +16,7 @@
 
 **Description:**
 : By default, the output of the extension starts with a few comment lines:
-: `# Nagios TYPO3 Monitoring Version 3.0.0 – https://schams.net/nagios`
+: `# Nagios TYPO3 Monitoring Version 3.0.1 – https://schams.net/nagios`
 : You can supress the output of these header line(s) by enabling the security option “**Suppress Header**”.
 
 **Default:**

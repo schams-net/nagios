@@ -17,7 +17,7 @@ example.com,my-nagios-server.org
 If the IP address or fully qualified hostname of the Nagios® server that initiated the request is not included in the comma-separated list, an **access denied** message appears:
 
 ```text
-# Nagios TYPO3 Monitoring Version 3.0.0 – https://schams.net/nagios
+# Nagios TYPO3 Monitoring Version 3.0.1 – https://schams.net/nagios
 # ACCESS DENIED
 MESSAGE:access denied
 ```
