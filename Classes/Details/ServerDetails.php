@@ -30,9 +30,6 @@ class ServerDetails
     /**
      * Returns PHP version as major-minor-release value (values such as "5.6.7-2ubuntu5.6" get cleaned up)
      * Example: 5.6.7
-     *
-     * @access public
-     * @return string Cleaned/simplified PHP version
      */
     public function getPhpVersion(): string
     {
@@ -44,9 +41,6 @@ class ServerDetails
      *
      * This method tries to get the information via GeneralUtility::getIndpEnv() first,
      * then $_SERVER[], because getIndpEnv() offers a limited set of server data only.
-     *
-     * @access public
-     * @return string Server name, host name or "not-supported" otherwise
      */
     public function getServerName(): string
     {
@@ -68,9 +62,6 @@ class ServerDetails
     /**
      * Returns current timestamp and timezone setting
      * Example: 1548302813-UTC
-     *
-     * @access public
-     * @return string
      */
     public function getTimeStamp(): string
     {
