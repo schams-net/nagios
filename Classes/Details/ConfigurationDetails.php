@@ -18,6 +18,7 @@ namespace SchamsNet\Nagios\Details;
  * The TYPO3 project - inspiring people to share!
  */
 
+use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -34,22 +35,15 @@ class ConfigurationDetails
      *
      * The context can be set by using the environment variable TYPO3_CONTEXT.
      * For example in Apache: SetEnv TYPO3_CONTEXT Development
-     *
-     * @access public
-     * @return string Application context as configured
      */
     public function getApplicationContext(): string
     {
-        /* use TYPO3\CMS\Core\Core\ApplicationContext; */
-        return (string)GeneralUtility::getApplicationContext();
+        return (string)Environment::getContext();
     }
 
     /**
      * Returns the site name as configured in typo3conf/LocalConfiguration.php
      * For example: "My TYPO3 Website"
-     *
-     * @access public
-     * @return string Site name
      */
     public function getSiteName(): string
     {
