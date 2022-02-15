@@ -24,7 +24,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use SchamsNet\Nagios\Utility\AccessUtility;
-
 use SchamsNet\Nagios\Details\ServerDetails;
 use SchamsNet\Nagios\Details\Typo3Details;
 use SchamsNet\Nagios\Details\ConfigurationDetails;
@@ -50,93 +49,53 @@ class NagiosController
 
     /**
      * Extension key
-     *
-     * @access private
-     * @var string
      */
-    private $extensionKey = 'nagios';
+    private string $extensionKey = 'nagios';
 
     /**
      * Extension configuration
-     *
-     * @access private
-     * @var ExtensionConfiguration
      */
-    private $extensionConfiguration = null;
-
-    /**
-     * Object Manager
-     *
-     * @access private
-     * @var ObjectManager
-     */
-    private $objectManager = null;
+    public ExtensionConfiguration $extensionConfiguration;
 
     /**
      * Server details
-     *
-     * @access private
-     * @var ServerDetails
      */
-    private $server = null;
+    public ServerDetails $server;
 
     /**
      * TYPO3 instance details
-     *
-     * @access private
-     * @var Typo3Details
      */
-    private $typo3instance = null;
+    public Typo3Details $typo3instance;
 
     /**
      * Extension details
-     *
-     * @access private
-     * @var ExtensionDetails
      */
-    private $extensions = null;
+    public ExtensionDetails $extensions;
 
     /**
      * Configuration details
-     *
-     * @access private
-     * @var ConfigurationDetails
      */
-    private $configuration = null;
+    public ConfigurationDetails $configuration;
 
     /**
-     * Default constructor
-     *
-     * @access public
-     * @return void
+     * Constructor
      */
-    public function __construct()
-    {
-        // Extension configuration
-        $this->extensionConfiguration = GeneralUtility::makeInstance(ExtensionConfiguration::class);
-
-        /** @var $objectManager ObjectManager */
-        $this->objectManager = GeneralUtility::makeInstance(ObjectManager::class);
-
-        /** @var $server ServerDetails */
-        $this->server = $this->objectManager->get(ServerDetails::class);
-
-        /** @var $typo3instance Typo3Details */
-        $this->typo3instance = $this->objectManager->get(Typo3Details::class);
-
-        /** @var $extensions ExtensionDetails */
-        $this->extensions = $this->objectManager->get(ExtensionDetails::class);
-
-        /** @var $configuration ConfigurationDetails */
-        $this->configuration = $this->objectManager->get(ConfigurationDetails::class);
+    public function __construct(
+        ExtensionConfiguration $extensionConfiguration,
+        ServerDetails $serverDetails,
+        Typo3Details $typo3Details,
+        ExtensionDetails $extensionDetails,
+        ConfigurationDetails $configurationDetails
+    ) {
+        $this->extensionConfiguration = $extensionConfiguration;
+        $this->serverDetails = $serverDetails;
+        $this->typo3Details = $typo3Details;
+        $this->extensionDetails = $extensionDetails;
+        $this->configurationDetails = $configurationDetails;
     }
 
     /**
      * Dispatcher method
-     *
-     * @access public
-     * @param ServerRequestInterface $request PSR-7 server request interface
-     * @return Response
      */
     public function execute(ServerRequestInterface $request): Response
     {
@@ -144,7 +103,7 @@ class NagiosController
 
         // Send header if not configured as suppressed
         if ($this->extensionConfiguration->get($this->extensionKey, 'securitySupressHeader') != 1) {
-            $version = $this->extensions->getExtensionVersion($this->extensionKey);
+            $version = $this->extensionDetails->getExtensionVersion($this->extensionKey);
             $header = '# Nagios TYPO3 Monitoring Version ' . $version . ' - https://schams.net/nagios';
         }
 
@@ -159,9 +118,9 @@ class NagiosController
             // Get installed/loaded extensions
             if ($this->extensionConfiguration->get($this->extensionKey, 'featureExtensionList') != 0) {
                 if ($this->extensionConfiguration->get($this->extensionKey, 'featureLoadedExtensionsOnly') != 0) {
-                    $extensionList = $this->extensions->getInstalledExtensions();
+                    $extensionList = $this->extensionDetails->getInstalledExtensions();
                 } else {
-                    $extensionList = $this->extensions->getAvailableExtensions();
+                    $extensionList = $this->extensionDetails->getAvailableExtensions();
                 }
                 foreach ($extensionList as $extension) {
                     $data[] .= self::KEY_EXTENSION . ':' . $extension;
@@ -169,29 +128,31 @@ class NagiosController
             }
             // Get TYPO3 version
             if ($this->extensionConfiguration->get($this->extensionKey, 'featureTypo3Version') != 0) {
-                $data[] = self::KEY_TYPO3 . ':' . self::KEY_VERSION . '-' . $this->typo3instance->getTypo3Version();
+                $data[] = self::KEY_TYPO3 . ':' . self::KEY_VERSION . '-' . $this->typo3Details->getTypo3Version();
             }
             // Get application context
             if ($this->extensionConfiguration->get($this->extensionKey, 'featureApplicationContext') != 0) {
                 $data[] = self::KEY_APPLICATION_CONTEXT . ':' .
-                    strtolower($this->configuration->getApplicationContext());
+                    strtolower($this->configurationDetails->getApplicationContext());
             }
             // Get site name as configured
             if ($this->extensionConfiguration->get($this->extensionKey, 'featureSitename') != 0) {
                 $data[] = self::KEY_SITENAME . ':' .
-                    urlencode(trim(preg_replace('/[^a-zA-Z0-9\-\. ]/', '', $this->configuration->getSiteName())));
+                    urlencode(
+                        trim(preg_replace('/[^a-zA-Z0-9\-\. ]/', '', $this->configurationDetails->getSiteName()))
+                    );
             }
             // Get PHP version number as major-minor-release value
             if ($this->extensionConfiguration->get($this->extensionKey, 'featurePhpVersion') != 0) {
-                $data[] = self::KEY_PHP . ':' . self::KEY_VERSION . '-' . $this->server->getPhpVersion();
+                $data[] = self::KEY_PHP . ':' . self::KEY_VERSION . '-' . $this->serverDetails->getPhpVersion();
             }
             // Get server name (as configured in web server configuration) or HTTP HOST name
             if ($this->extensionConfiguration->get($this->extensionKey, 'featureServername') != 0) {
-                $data[] = self::KEY_SERVERNAME . ':' . urlencode($this->server->getServerName());
+                $data[] = self::KEY_SERVERNAME . ':' . urlencode($this->serverDetails->getServerName());
             }
             // Get server timestamp and timezone
             if ($this->extensionConfiguration->get($this->extensionKey, 'featureTimestamp') != 0) {
-                $data[] = self::KEY_TIMESTAMP . ':' . $this->server->getTimeStamp();
+                $data[] = self::KEY_TIMESTAMP . ':' . $this->serverDetails->getTimeStamp();
             }
         } else {
             $data[] = '# ACCESS DENIED';

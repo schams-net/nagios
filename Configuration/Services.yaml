@@ -1,0 +1,14 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  SchamsNet\Nagios\:
+    resource: '../Classes/*'
+
+  SchamsNet\Nagios\Controller\NagiosController:
+    public: true
+
+  SchamsNet\Nagios\Details\ExtensionDetails:
+    public: true

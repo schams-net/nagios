@@ -30,54 +30,38 @@ use SchamsNet\Nagios\Controller\NagiosController;
 class ExtensionDetails
 {
     /**
-     * Object Manager
-     *
-     * @access private
-     * @var ObjectManager
+     * Extensionmanager ListUtility
      */
-    private $objectManager = null;
+    private ListUtility $extensionListUtility;
 
     /**
-     * Default constructor
-     *
-     * @access public
-     * @return void
+     * Constructor
      */
-    public function __construct()
+    public function __construct(ListUtility $extensionListUtility)
     {
-        /** @var $objectManager ObjectManager */
-        $this->objectManager = GeneralUtility::makeInstance(ObjectManager::class);
+        $this->extensionListUtility = $extensionListUtility;
     }
 
     /**
-     * Returns an array with available/installed extensions
-     *
-     * @access private
-     * @param bool $loadedExtensionsOnly If set to "true", only loaded extensions are included (default: "false")
-     * @return array List of available/installed extensions
+     * Returns an array with available/installed extensions, system extensions excluded
      */
     public function getAvailableExtensions(bool $loadedExtensionsOnly = false): array
     {
         $installedExtensions = [];
-
-        /** @var $extensionListUtility ListUtility */
-        $extensionListUtility = $this->objectManager->get(ListUtility::class);
-
-        $availableExtensions = $extensionListUtility->getAvailableAndInstalledExtensionsWithAdditionalInformation();
+        $availableExtensions = $this->extensionListUtility
+            ->getAvailableAndInstalledExtensionsWithAdditionalInformation();
         foreach ($availableExtensions as $extensionKey => $extensionDetails) {
             if (array_key_exists('type', $extensionDetails)
                 && array_key_exists('version', $extensionDetails)
-                && $this->isValidExtensionKey($extensionKey) === true
-                && $this->isValidExtensionVersion($extensionDetails['version']) === true) {
-                if (strtolower($extensionDetails['type']) == 'local') {
-                    if ($loadedExtensionsOnly === false
-                        || ($loadedExtensionsOnly === true
-                            && ExtensionManagementUtility::isLoaded($extensionKey) === true
-                        )
-                    ) {
-                        $extension = [$extensionKey, NagiosController::KEY_VERSION, $extensionDetails['version']];
-                        $installedExtensions[] = implode('-', $extension);
-                    }
+                && $this->isValidExtensionKey($extensionKey)
+                && strtolower($extensionDetails['type']) == 'local') {
+                if (!$loadedExtensionsOnly
+                    || ($loadedExtensionsOnly && ExtensionManagementUtility::isLoaded($extensionKey))
+                ) {
+                    // Fetch version through the ExtensionManagementUtility to ensure it's sanitized
+                    $extensionVersion = $this->getExtensionVersion($extensionKey);
+                    $extension = [$extensionKey, NagiosController::KEY_VERSION, $extensionVersion];
+                    $installedExtensions[] = implode('-', $extension);
                 }
             }
         }
@@ -89,9 +73,6 @@ class ExtensionDetails
 
     /**
      * Returns an array with installed extensions (excludes extensions, which are available but not installed)
-     *
-     * @access private
-     * @return array List of installed extensions
      */
     public function getInstalledExtensions(): array
     {
@@ -99,23 +80,20 @@ class ExtensionDetails
     }
 
     /**
-     * Returns the version of a specific extension
-     *
-     * @access private
-     * @param string $extensionKey Extension key
-     * @return string Extension version, e.g. "1.2.999"
+     * Returns the version of a specific extension or (lower case) <branch> if version is "dev-<branch>"
      */
     public function getExtensionVersion(string $extensionKey): string
     {
-        return ExtensionManagementUtility::getExtensionVersion($extensionKey);
+        $version = ExtensionManagementUtility::getExtensionVersion($extensionKey);
+        $version = preg_replace('/^v/', '', strtolower($version));
+        if (preg_match('/^dev-/', $version)) {
+            return substr($version, 4) ?: 'development';
+        }
+        return $version;
     }
 
     /**
      * Checks if syntax of extension key is valid
-     *
-     * @access private
-     * @param string $extensionKey Extension key
-     * @return bool Returns true, if $extensionKey is a valid, false otherwise
      */
     private function isValidExtensionKey(string $extensionKey): bool
     {
@@ -127,10 +105,6 @@ class ExtensionDetails
 
     /**
      * Checks if syntax of extension version is valid
-     *
-     * @access private
-     * @param string $version Version such as "1.2.999"
-     * @return bool Returns true, if $version is a valid extension version, false otherwise
      */
     private function isValidExtensionVersion(string $version): bool
     {
