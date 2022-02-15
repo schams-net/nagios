@@ -22,7 +22,6 @@ use GuzzleHttp\Psr7\Response;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
-use TYPO3\CMS\Extbase\SignalSlot\Dispatcher as SignalSlotDispatcher;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use SchamsNet\Nagios\Utility\AccessUtility;
 
@@ -74,14 +73,6 @@ class NagiosController
     private $objectManager = null;
 
     /**
-     * Signal-Slot dispatcher
-     *
-     * @access private
-     * @var SignalSlotDispatcher
-     */
-    private $signalSlotDispatcher;
-
-    /**
      * Server details
      *
      * @access private
@@ -127,9 +118,6 @@ class NagiosController
         /** @var $objectManager ObjectManager */
         $this->objectManager = GeneralUtility::makeInstance(ObjectManager::class);
 
-        /** @var $objectManager SignalSlotDispatcher */
-        $this->signalSlotDispatcher = GeneralUtility::makeInstance(SignalSlotDispatcher::class);
-
         /** @var $server ServerDetails */
         $this->server = $this->objectManager->get(ServerDetails::class);
 
@@ -141,19 +129,6 @@ class NagiosController
 
         /** @var $configuration ConfigurationDetails */
         $this->configuration = $this->objectManager->get(ConfigurationDetails::class);
-    }
-
-    /**
-     * Emits a signal after core details have been compiled
-     *
-     * @access private
-     * @param array $data Compiled data (can be manipulated/extended by slots)
-
-     * @return void
-     */
-    private function emitAfterCoreDetailsSignal(array &$data): void
-    {
-        $this->signalSlotDispatcher->dispatch(__CLASS__, 'postNagiosCoreDetails', [$this->extensionKey, &$data]);
     }
 
     /**
@@ -218,9 +193,6 @@ class NagiosController
             if ($this->extensionConfiguration->get($this->extensionKey, 'featureTimestamp') != 0) {
                 $data[] = self::KEY_TIMESTAMP . ':' . $this->server->getTimeStamp();
             }
-            // Emit signal after core details have been compiled
-            // (enables other extension to manipulate and/or extend the output)
-            $this->emitAfterCoreDetailsSignal($data);
         } else {
             $data[] = '# ACCESS DENIED';
             $data[] = self::KEY_MESSAGE . ':access denied';
