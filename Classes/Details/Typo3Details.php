@@ -18,6 +18,8 @@ namespace SchamsNet\Nagios\Details;
  * The TYPO3 project - inspiring people to share!
  */
 
+use TYPO3\CMS\Core\Information\Typo3Version;
+
 /**
  * Class provides TYPO3 specific details
  */
@@ -25,12 +27,9 @@ class Typo3Details
 {
     /**
      * Returns TYPO3 version as major.minor.release[-dev] value
-     *
-     * @access public
-     * @return string TYPO3 version
      */
     public function getTypo3Version(): string
     {
-        return TYPO3_version;
+        return (new Typo3Version())->getVersion();
     }
 }
