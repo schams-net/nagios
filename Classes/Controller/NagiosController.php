@@ -132,6 +132,7 @@ class NagiosController
             }
             // Get application context
             if ($this->extensionConfiguration->get($this->extensionKey, 'featureApplicationContext') != 0) {
+                // @extensionScannerIgnoreLine
                 $data[] = self::KEY_APPLICATION_CONTEXT . ':' .
                     strtolower($this->configurationDetails->getApplicationContext());
             }
