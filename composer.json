@@ -1,0 +1,25 @@
+{
+    "name": "schams-net/nagios",
+    "description": "Monitors TYPO3 instances and warns about insecure extensions, old TYPO3 versions, wrong PHP versions, etc. Requires a Nagios monitoring server.",
+    "type": "typo3-cms-extension",
+    "authors": [
+        {
+            "name": "Michael Schams",
+            "homepage": "https://schams.net"
+        }
+    ],
+    "require": {
+        "typo3/cms-core": "^11",
+        "php": "^7.4 || ^8.0 || ^8.1"
+    },
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "nagios"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "SchamsNet\\Nagios\\": "Classes"
+        }
+    }
+}
