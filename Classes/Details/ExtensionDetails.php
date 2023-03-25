@@ -30,6 +30,11 @@ use SchamsNet\Nagios\Controller\NagiosController;
 class ExtensionDetails
 {
     /**
+     * Available extensions
+     */
+    private $availableExtensions = [];
+
+    /**
      * Extensionmanager ListUtility
      */
     private ListUtility $extensionListUtility;
@@ -48,9 +53,10 @@ class ExtensionDetails
     public function getAvailableExtensions(bool $loadedExtensionsOnly = false): array
     {
         $installedExtensions = [];
-        $availableExtensions = $this->extensionListUtility
+        $this->availableExtensions = $this->extensionListUtility
             ->getAvailableAndInstalledExtensionsWithAdditionalInformation();
-        foreach ($availableExtensions as $extensionKey => $extensionDetails) {
+
+        foreach ($this->availableExtensions as $extensionKey => $extensionDetails) {
             if (array_key_exists('type', $extensionDetails)
                 && array_key_exists('version', $extensionDetails)
                 && $this->isValidExtensionKey($extensionKey)
@@ -58,10 +64,13 @@ class ExtensionDetails
                 if (!$loadedExtensionsOnly
                     || ($loadedExtensionsOnly && ExtensionManagementUtility::isLoaded($extensionKey))
                 ) {
-                    // Fetch version through the ExtensionManagementUtility to ensure it's sanitized
                     $extensionVersion = $this->getExtensionVersion($extensionKey);
-                    $extension = [$extensionKey, NagiosController::KEY_VERSION, $extensionVersion];
-                    $installedExtensions[] = implode('-', $extension);
+                    if ($extensionVersion) {
+                        $extension = [$extensionKey, NagiosController::KEY_VERSION, $extensionVersion];
+                        $installedExtensions[] = implode('-', $extension);
+                    } else {
+                        // Unable to safely determine extension version
+                    }
                 }
             }
         }
@@ -82,14 +91,30 @@ class ExtensionDetails
     /**
      * Returns the version of a specific extension or (lower case) <branch> if version is "dev-<branch>"
      */
-    public function getExtensionVersion(string $extensionKey): string
+    public function getExtensionVersion(string $extensionKey): ?string
     {
+        // The function returns an empty string if the extension is not installed/loaded. In a
+        // classic installation (without Composer), this results in an extension list showing
+        // disabled extensions without version string.
         $version = ExtensionManagementUtility::getExtensionVersion($extensionKey);
+
+        // Fallback: get extension version from $this->availableExtensions
+        if (empty($version) && isset($this->availableExtensions[$extensionKey]['version'])) {
+            $version = $this->availableExtensions[$extensionKey]['version'];
+        }
+
+        // Remove leading "v"
         $version = preg_replace('/^v/', '', strtolower($version));
+
+        // Convert "dev-<branch>" to "<branch>"
         if (preg_match('/^dev-/', $version)) {
             return substr($version, 4) ?: 'development';
         }
-        return $version;
+
+        if ($this->isValidExtensionVersion($version)) {
+            return $version;
+        }
+        return null;
     }
 
     /**
