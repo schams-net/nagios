@@ -9,7 +9,7 @@
         }
     ],
     "require": {
-        "typo3/cms-core": "^11",
+        "typo3/cms-core": "^11 || ^12",
         "php": "^7.4 || ^8.0 || ^8.1 || ^8.2"
     },
     "extra": {
