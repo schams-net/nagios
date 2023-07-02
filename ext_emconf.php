@@ -23,7 +23,6 @@ $EM_CONF[$_EXTKEY] = [
     'category' => 'misc',
     'version' => '4.0.1',
     'state' => 'stable',
-    'createDirs' => '',
     'clearcacheonload' => true,
     'author' => 'Michael Schams',
     'author_email' => 'schams.net',
