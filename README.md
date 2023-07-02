@@ -35,7 +35,7 @@ The TYPO3 extension “Nagios” follows [semantic versioning](https://semver.or
 
 ## License
 
-(c) 2010-2022 Michael Schams <[schams.net](https://schams.net)>, all rights reserved
+(c) 2010-2023 Michael Schams <[schams.net](https://schams.net)>, all rights reserved
 
 This software free software; you can redistribute it and/or modify it under the terms of the GNU General Public License, either version 2 of the License, or any later version. For the full copyright and license information, please see the documentation that was distributed with this source code.
 
