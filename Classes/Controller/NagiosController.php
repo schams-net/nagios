@@ -60,22 +60,22 @@ class NagiosController
     /**
      * Server details
      */
-    public ServerDetails $server;
+    public ServerDetails $serverDetails;
 
     /**
      * TYPO3 instance details
      */
-    public Typo3Details $typo3instance;
+    public Typo3Details $typo3Details;
 
     /**
      * Extension details
      */
-    public ExtensionDetails $extensions;
+    public ExtensionDetails $extensionDetails;
 
     /**
      * Configuration details
      */
-    public ConfigurationDetails $configuration;
+    public ConfigurationDetails $configurationDetails;
 
     /**
      * Constructor
