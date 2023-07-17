@@ -1,6 +1,7 @@
 {
     "name": "schams-net/nagios",
     "description": "Monitors TYPO3 instances and warns about insecure extensions, old TYPO3 versions, wrong PHP versions, etc. Requires a Nagios monitoring server.",
+    "license": "GPL-2.0-or-later",
     "type": "typo3-cms-extension",
     "authors": [
         {
