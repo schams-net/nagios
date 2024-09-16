@@ -54,7 +54,7 @@ class ExtensionDetails
     {
         $installedExtensions = [];
         $this->availableExtensions = $this->extensionListUtility
-            ->getAvailableAndInstalledExtensionsWithAdditionalInformation();
+            ->getAvailableExtensions();
 
         foreach ($this->availableExtensions as $extensionKey => $extensionDetails) {
             if (array_key_exists('type', $extensionDetails)
