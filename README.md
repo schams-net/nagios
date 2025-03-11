@@ -30,12 +30,13 @@ The TYPO3 extension “Nagios” follows [semantic versioning](https://semver.or
 |           v1.x | [v1-oldstable](https://github.com/schams-net/nagios/tree/v1-oldstable) | archived         | TYPO3 v4.5 and v6.2  |
 |           v2.x | [v2-oldstable](https://github.com/schams-net/nagios/tree/v2-oldstable) | old stable       | TYPO3 v7, v8, and v9 |
 |           v3.x | [v3-oldstable](https://github.com/schams-net/nagios/tree/v3-oldstable) | old stable       | TYPO3 v9 and v10     |
-|           v4.x | [main](https://github.com/schams-net/nagios/tree/main)                 | **stable**       | TYPO3 v11 and v12    |
+|           v4.x | [v4-oldstable](https://github.com/schams-net/nagios/tree/v4-oldstable) | **stable**       | TYPO3 v11 and v12    |
+|           v5.x | [main](https://github.com/schams-net/nagios/tree/main)                 | development      | TYPO3 v13            |
 
 
 ## License
 
-(c) 2010-2023 Michael Schams <[schams.net](https://schams.net)>, all rights reserved
+(c) 2010-2024 Michael Schams <[schams.net](https://schams.net)>, all rights reserved
 
 This software free software; you can redistribute it and/or modify it under the terms of the GNU General Public License, either version 2 of the License, or any later version. For the full copyright and license information, please see the documentation that was distributed with this source code.
 
