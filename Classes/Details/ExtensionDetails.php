@@ -18,11 +18,10 @@ namespace SchamsNet\Nagios\Details;
  * The TYPO3 project - inspiring people to share!
  */
 
-use TYPO3\CMS\Core\Utility\GeneralUtility;
+use SchamsNet\Nagios\Controller\NagiosController;
+use TYPO3\CMS\Core\Package\PackageManager;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
-use TYPO3\CMS\Extensionmanager\Utility\ListUtility;
-use SchamsNet\Nagios\Controller\NagiosController;
 
 /**
  * Class contains methods for extension-related details, such as extension versions.
@@ -35,16 +34,16 @@ class ExtensionDetails
     private $availableExtensions = [];
 
     /**
-     * Extensionmanager ListUtility
+     * PackageManager
      */
-    private ListUtility $extensionListUtility;
+    private PackageManager $packageManager;
 
     /**
      * Constructor
      */
-    public function __construct(ListUtility $extensionListUtility)
+    public function __construct(PackageManager $packageManager)
     {
-        $this->extensionListUtility = $extensionListUtility;
+        $this->packageManager = $packageManager;
     }
 
     /**
@@ -53,16 +52,14 @@ class ExtensionDetails
     public function getAvailableExtensions(bool $loadedExtensionsOnly = false): array
     {
         $installedExtensions = [];
-        $this->availableExtensions = $this->extensionListUtility
-            ->getAvailableAndInstalledExtensionsWithAdditionalInformation();
+        $this->availableExtensions = $this->packageManager->getAvailablePackages();
 
         foreach ($this->availableExtensions as $extensionKey => $extensionDetails) {
-            if (array_key_exists('type', $extensionDetails)
-                && array_key_exists('version', $extensionDetails)
-                && $this->isValidExtensionKey($extensionKey)
-                && strtolower($extensionDetails['type']) == 'local') {
+            if ($extensionDetails->getPackageMetaData()->isExtensionType() &&
+                !$extensionDetails->getPackageMetaData()->isFrameworkType() &&
+                $this->isValidExtensionKey($extensionKey)) {
                 if (!$loadedExtensionsOnly
-                    || ($loadedExtensionsOnly && ExtensionManagementUtility::isLoaded($extensionKey))
+                    || ($loadedExtensionsOnly && $this->packageManager->isPackageActive($extensionKey))
                 ) {
                     $extensionVersion = $this->getExtensionVersion($extensionKey);
                     if ($extensionVersion) {
