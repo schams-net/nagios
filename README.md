@@ -23,15 +23,15 @@ More details and alternative installation methods can be found in the [documenta
 
 ## Git Branches, Versions, and Compatibility
 
-The TYPO3 extension “Nagios” follows [semantic versioning](https://semver.org/) since version 3.x.
+The TYPO3 extension “Nagios” loosely follows [semantic versioning](https://semver.org/) since version 3.x.
 
 | Major version: | Git branch:                                                            | Status:          | TYPO3 compatibility: |
 |---------------:|:----------------------------------------------------------------------:|:-----------------|:---------------------|
 |           v1.x | [v1-oldstable](https://github.com/schams-net/nagios/tree/v1-oldstable) | archived         | TYPO3 v4.5 and v6.2  |
 |           v2.x | [v2-oldstable](https://github.com/schams-net/nagios/tree/v2-oldstable) | old stable       | TYPO3 v7, v8, and v9 |
 |           v3.x | [v3-oldstable](https://github.com/schams-net/nagios/tree/v3-oldstable) | old stable       | TYPO3 v9 and v10     |
-|           v4.x | [v4-oldstable](https://github.com/schams-net/nagios/tree/v4-oldstable) | **stable**       | TYPO3 v11 and v12    |
-|           v5.x | [main](https://github.com/schams-net/nagios/tree/main)                 | development      | TYPO3 v13            |
+|           v4.x | [v4-oldstable](https://github.com/schams-net/nagios/tree/v4-oldstable) | old stable       | TYPO3 v11 and v12    |
+|           v5.x | [release/v5](https://github.com/schams-net/nagios/tree/release/v5)     | **stable**       | TYPO3 v13            |
 
 
 ## License
