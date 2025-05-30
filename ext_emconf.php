@@ -22,7 +22,7 @@ $EM_CONF[$_EXTKEY] = [
         wrong PHP versions, etc. Requires a Nagios monitoring server.',
     'category' => 'misc',
     'version' => '5.0.0',
-    'state' => 'beta',
+    'state' => 'stable',
     'author' => 'Michael Schams',
     'author_email' => 'schams.net',
     'author_company' => 'schams.net',
