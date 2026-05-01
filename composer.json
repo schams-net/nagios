@@ -10,12 +10,13 @@
         }
     ],
     "require": {
-        "typo3/cms-core": "^13",
+        "typo3/cms-core": "^13 || ^14",
         "php": "^8.2"
     },
     "extra": {
         "typo3/cms": {
-            "extension-key": "nagios"
+            "extension-key": "nagios",
+            "version": "5.0.1"
         }
     },
     "autoload": {

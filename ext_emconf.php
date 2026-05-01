@@ -21,15 +21,15 @@ $EM_CONF[$_EXTKEY] = [
     'description' => 'Monitors TYPO3 instances and warns about insecure extensions, old TYPO3 versions,
         wrong PHP versions, etc. Requires a Nagios monitoring server.',
     'category' => 'misc',
-    'version' => '5.0.0',
+    'version' => '5.0.1',
     'state' => 'stable',
     'author' => 'Michael Schams',
     'author_email' => 'schams.net',
     'author_company' => 'schams.net',
     'constraints' => [
         'depends' => [
-            'php' => '8.2.0-8.2.99',
-            'typo3' => '13.0.0-13.4.99',
+            'php' => '8.2.0-8.5.99',
+            'typo3' => '13.0.0-14.3.99',
         ],
         'conflicts' => [],
         'suggests' => [],
