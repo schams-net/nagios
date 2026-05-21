@@ -19,6 +19,7 @@ namespace SchamsNet\Nagios\Details;
  */
 
 use SchamsNet\Nagios\Controller\NagiosController;
+use TYPO3\CMS\Core\Package\Package;
 use TYPO3\CMS\Core\Package\PackageManager;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
@@ -96,8 +97,15 @@ class ExtensionDetails
         $version = ExtensionManagementUtility::getExtensionVersion($extensionKey);
 
         // Fallback: get extension version from $this->availableExtensions
-        if (empty($version) && isset($this->availableExtensions[$extensionKey]['version'])) {
-            $version = $this->availableExtensions[$extensionKey]['version'];
+        if (empty($version) && isset($this->availableExtensions[$extensionKey])) {
+            $extension = $this->availableExtensions[$extensionKey];
+            if (is_array($extension) && isset($extension['version'])) {
+                $version = $extension['version'];
+            } elseif ($extension instanceof Package) {
+                $version = $extension->getValueFromComposerManifest('version');
+            } else {
+                // Unable determine extension version
+            }
         }
 
         // Remove leading "v"
