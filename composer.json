@@ -16,7 +16,7 @@
     "extra": {
         "typo3/cms": {
             "extension-key": "nagios",
-            "version": "5.0.1"
+            "version": "5.0.2"
         }
     },
     "autoload": {
